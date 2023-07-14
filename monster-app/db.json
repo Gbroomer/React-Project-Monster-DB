@@ -1,0 +1,16 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "name": "Gbroomer1",
+      "password": "broomer1"
+    }
+  ],
+  "Encounters": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}
