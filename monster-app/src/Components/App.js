@@ -11,12 +11,12 @@ import NavBar from "./NavBar"
 
 function App() {
 
-  const[monsters, setMonsters] = useState([])
-  const[userLogged, setUserLogged] = useState([false])
-  const[Users, setUsers] = useState([])
-  const[User, setUser] = useState([])
+  const [monsters, setMonsters] = useState([])
+  const [userLogged, setUserLogged] = useState(false)
+  const [users, setUsers] = useState([])
+  const [user, setUser] = useState([])
 
-  useEffect(() =>{
+  useEffect(() => {
     fetch("https://www.dnd5eapi.co/api/monsters")
       .then(res => res.json())
       .then(data => setMonsters(data))
@@ -24,52 +24,53 @@ function App() {
 
   useEffect(() => {
     fetch("http://localhost:3001/Users")
-    .then(res => res.json())
-    .then(data => setUsers(data))
+      .then(res => res.json())
+      .then(data => setUsers(data))
   }, [])
 
   console.log(monsters)
-  console.log(Users)
+  console.log(users)
 
   function userLogin(input) {
-    const userExists = Users.filter(user => input.name.includes(user.name)) && Users.filter(user => input.password.includes(user.password))
-    if(userExists) {
+    const userExists = users.find(user => user.name === input.name && user.password === input.password)
+    if (userExists) {
       setUser(userExists)
       setUserLogged(true)
+      console.log(userExists)
     } else {
-      alert('Incorrect Username or Password')
+      alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
   }
-
-
-
   function userSignUp(input) {
-    const userExists = Users.filter(user => input.name.includes(user.name))
-    if(userExists) {
+    const userExists = users.find(user => user.name.toLowerCase() === input.name.toLowerCase())
+    console.log(userExists)
+    if (userExists) {
       alert('Username Already Exists')
     } else {
-      setUser(input)
-      setUserLogged(true)
       fetch("http://localhost:3001/Users", {
-        Method: 'POST',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/JSON',
           Accept: 'application/JSON'
         },
         body: JSON.stringify(input)
       })
-      .catch(error => {
-        alert('Error Fetching Users', error)
-      })
+        .then(res => res.json())
+        .then(newUser => {
+          setUser(newUser)
+          setUserLogged(true)
+          console.log(newUser)
+        })
+        .catch(error => {
+          alert('Error Fetching Users', error)
+          console.log(error)
+        })
     }
   }
-
-  console.log(User)
-
   return (
+
     <div className="App">
-      <NavBar userLogin = { userLogin } userSignUp = { userSignUp } userLogged = { userLogged }/>
-    
+      <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
     </div>
   );
 }

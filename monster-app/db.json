@@ -4,6 +4,11 @@
       "id": 1,
       "name": "Gbroomer1",
       "password": "broomer1"
+    },
+    {
+      "name": "GrantTest",
+      "password": "testtest",
+      "id": 2
     }
   ],
   "Encounters": [

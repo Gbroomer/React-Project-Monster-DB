@@ -1,8 +1,10 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { NavLink } from "react-router-dom"
 
 
-function NavBar({ userLogin, userSignUp }) {
+function NavBar({ userLogin, userSignUp, userLogged, user }) {
+
+    const [loginType, setLoginType] = useState(false)
 
     const linkStyles = {
         display: "inline-block",
@@ -16,42 +18,61 @@ function NavBar({ userLogin, userSignUp }) {
 
     const usernameLogin = useRef()
     const userPassLogin = useRef()
-    const usernameSignUp = useRef()
-    const userPassSignUp = useRef()
-    
+
     function handleLogin(e) {
         e.preventDefault()
-        const username = usernameLogin.current.value
+        const name = usernameLogin.current.value
         const password = userPassLogin.current.value
-        if (username && password ) {
-            const user ={
-                username: username,
+        if (name && password) {
+            const user = {
+                name: name,
                 password: password
             }
-            console.log(user)
-            userLogin(user)
+            if (loginType) {
+                userSignUp(user)
+            } else {
+                userLogin(user)
+            }
         } else {
             alert('Please Input All Fields')
         }
 
-       e.target.reset()
-       
-    }
-    function handleSignUp(e) {
-        e.preventDefault()
-        const username = usernameLogin.current.value
-        const password = userPassLogin.current.value
-        if(username && password) {
-            const user ={
-                username: username,
-                password: password
-            }
-            console.log(user)
-            userSignUp(user)
-        } else {
-            alert('Please Input All Fields')
-        }
         e.target.reset()
+
+    }
+
+    function handleSwitch() {
+        setLoginType(!loginType)
+    }
+
+    function CheckLogged() {
+        if (!userLogged) {
+            return (
+            <div>
+                <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
+                    <div>
+                        <h4>{loginType ? "Sign-Up:" : "Login:"}</h4>
+                    </div>
+                    <div>
+                        <input type="text" name="username" placeholder="Username" ref={usernameLogin} />
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password" ref={userPassLogin} />
+                    </div>
+                    <input type="submit" value="Submit" />
+                </form>
+                <div>
+                    <button onClick={handleSwitch}>{loginType ? "Have an account? Click to Login" : "New Here? Click to Sign Up"}</button>
+                </div>
+            </div>
+            )
+        } else {
+            return (
+                <div>
+                    <h2>Welcome {user.name}!</h2>
+                </div>
+            )
+        }
     }
 
     return (
@@ -84,32 +105,7 @@ function NavBar({ userLogin, userSignUp }) {
                 User Info
             </NavLink>
             <div>
-                <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
-                    <div>
-                        <h4>Login:</h4>
-                    </div>
-                    <div>
-                        <input type="text" name="username" placeholder="Username" ref={usernameLogin}/>
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Password" ref={userPassLogin}/>
-                    </div>
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-            <div>
-                <form id="SignUp" className="User-SignUp" onSubmit={(e) => handleSignUp(e)}>
-                    <div>
-                        <h4>Sign-up</h4>
-                    </div>
-                    <div>
-                        <input type="text" name="usernameSignUp" placeholder="Username" ref={usernameSignUp}/>
-                    </div>
-                    <div>
-                        <input type="password" name="passwordSignUp" placeholder="Password" ref={userPassSignUp}/>
-                    </div>
-                    <input type="submit" value ="Submit" />
-                </form>
+                <CheckLogged />
             </div>
         </div>
     )
