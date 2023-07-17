@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 // import Encounters from "./Encounters/Encounters"
 // import Home from "./Home"
-// import MonsterContainer from "./Monsters/MonsterContainer"
+import MonsterContainer from "./Monsters/MonsterContainer"
 // import SpecificMonster from "./Monsters/SpecificMonster"
 // import User from "./UserInfo/User"
 import NavBar from "./NavBar"
@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     fetch("https://www.dnd5eapi.co/api/monsters")
       .then(res => res.json())
-      .then(data => setMonsters(data))
+      .then(data => setMonsters(data.results))
   }, [])
 
   useEffect(() => {
@@ -28,8 +28,6 @@ function App() {
       .then(data => setUsers(data))
   }, [])
 
-  console.log(monsters)
-  console.log(users)
 
   function userLogin(input) {
     const userExists = users.find(user => user.name === input.name && user.password === input.password)
@@ -71,6 +69,7 @@ function App() {
 
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
+      <MonsterContainer monsters={monsters} setMonsters={setMonsters}/>
     </div>
   );
 }
