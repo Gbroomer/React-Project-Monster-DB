@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 // import Encounters from "./Encounters/Encounters"
 // import Home from "./Home"
 import MonsterContainer from "./Monsters/MonsterContainer"
+import Encounters from "./Encounters/Encounters"
 // import SpecificMonster from "./Monsters/SpecificMonster"
 // import User from "./UserInfo/User"
 import NavBar from "./NavBar"
@@ -34,14 +35,13 @@ function App() {
     if (userExists) {
       setUser(userExists)
       setUserLogged(true)
-      console.log(userExists)
     } else {
       alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
   }
+  console.log(monsters)
   function userSignUp(input) {
     const userExists = users.find(user => user.name.toLowerCase() === input.name.toLowerCase())
-    console.log(userExists)
     if (userExists) {
       alert('Username Already Exists')
     } else {
