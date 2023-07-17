@@ -1,8 +1,7 @@
 import '../App.css';
 import React, { useEffect, useState } from "react"
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-// import Encounters from "./Encounters/Encounters"
-// import Home from "./Home"
+import Encounters from "./Encounters/Encounters"
 // import MonsterContainer from "./Monsters/MonsterContainer"
 // import SpecificMonster from "./Monsters/SpecificMonster"
 // import User from "./UserInfo/User"
@@ -19,7 +18,7 @@ function App() {
   useEffect(() => {
     fetch("https://www.dnd5eapi.co/api/monsters")
       .then(res => res.json())
-      .then(data => setMonsters(data))
+      .then(data => setMonsters(data.results))
   }, [])
 
   useEffect(() => {
@@ -28,22 +27,20 @@ function App() {
       .then(data => setUsers(data))
   }, [])
 
-  console.log(monsters)
-  console.log(users)
+  // console.log(monsters)
+  // console.log(users)
 
   function userLogin(input) {
     const userExists = users.find(user => user.name === input.name && user.password === input.password)
     if (userExists) {
       setUser(userExists)
       setUserLogged(true)
-      console.log(userExists)
     } else {
       alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
   }
   function userSignUp(input) {
     const userExists = users.find(user => user.name.toLowerCase() === input.name.toLowerCase())
-    console.log(userExists)
     if (userExists) {
       alert('Username Already Exists')
     } else {
@@ -71,6 +68,10 @@ function App() {
 
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
+      {userLogged && (
+        <Encounters user = {user} />
+
+      )}
     </div>
   );
 }
