@@ -39,6 +39,7 @@ function App() {
       alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
   }
+  console.log(monsters)
   function userSignUp(input) {
     const userExists = users.find(user => user.name.toLowerCase() === input.name.toLowerCase())
     if (userExists) {
@@ -70,7 +71,6 @@ function App() {
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
       {userLogged && (
         <Encounters user = {user} />
-
       )}
     </div>
   );
