@@ -95,7 +95,7 @@ function EncounterMonsters({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {damage_vulnerabilities.map((vulnerability, index) => (
-                                <p key={index}>{vulnerability}</p>
+                                <p key={index}>{vulnerability.index}</p>
                             ))}
                         </div>
                     )}
@@ -103,7 +103,7 @@ function EncounterMonsters({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {damage_resistances.map((resistance, index) => (
-                                <p key={index}>{resistance}</p>
+                                <p key={index}>{resistance.index}</p>
                             ))}
                         </div>
                     )}
@@ -111,7 +111,7 @@ function EncounterMonsters({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {damage_immunities.map((immunity, index) => (
-                                <p key={index}>{immunity}</p>
+                                <p key={index}>{immunity.index}</p>
                             ))}
                         </div>
                     )}
@@ -119,7 +119,7 @@ function EncounterMonsters({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {condition_immunities.map((immunity, index) => (
-                                <p key={index}>{immunity}</p>
+                                <p key={index}>{immunity.index}</p>
                             ))}
                         </div>
                     )}
@@ -147,17 +147,14 @@ function EncounterMonsters({ monster }) {
                     {actions.map((action, index) => (
                         <div key={index}>
                             <h3>{action.name}</h3>
-                            {action.multiattack_type && (
-                                <p>Multiattack Type: {action.multiattack_type}</p>
-                            )}
                             <p>{action.desc}</p>
-                            {action.actions.length > 0 && (
+                            {/* {action.actions.length > 0 && (
                                 action.actions.map((subAction, subIndex) => (
                                     <p key={subIndex}>
                                         {subAction.action_name} (Count: {subAction.count}, Type: {subAction.type})
                                     </p>
                                 ))
-                            )}
+                            )} */}
                         </div>
                     ))}
                     {legendary_actions.length > 0 && (
