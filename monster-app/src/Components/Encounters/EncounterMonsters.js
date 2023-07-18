@@ -148,13 +148,6 @@ function EncounterMonsters({ monster }) {
                         <div key={index}>
                             <h3>{action.name}</h3>
                             <p>{action.desc}</p>
-                            {/* {action.actions.length > 0 && (
-                                action.actions.map((subAction, subIndex) => (
-                                    <p key={subIndex}>
-                                        {subAction.action_name} (Count: {subAction.count}, Type: {subAction.type})
-                                    </p>
-                                ))
-                            )} */}
                         </div>
                     ))}
                     {legendary_actions.length > 0 && (
