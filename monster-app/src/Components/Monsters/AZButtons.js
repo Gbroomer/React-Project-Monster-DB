@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
-function AZButtons({ letter, filterLetteredMonsters })  {
+function AZButtons({ letter, filterLetteredMonsters, unfilterLetteredMonsters })  {
     const [buttonIsClicked, setbuttonIsClicked] = useState(false)
-    const [buttonText, setButtonText] = useState('');
 
     const letterButtons = {
         background: "grey",
@@ -20,15 +19,19 @@ function AZButtons({ letter, filterLetteredMonsters })  {
         width: "25px"
     }
 
-    function handleClick (e){
+    function handleClick (){
+
+        if(!buttonIsClicked) {
+            filterLetteredMonsters(letter.toLowerCase())
+        } else {
+            unfilterLetteredMonsters(letter.toLowerCase())
+        }
+
         setbuttonIsClicked(!buttonIsClicked)
-        setButtonText(e.target.textContent)
-        filterLetteredMonsters(buttonText.toLowerCase())
-        console.log(buttonText.toLowerCase())
     }
     
     return(
-        <button onClick={(e)=>handleClick(e)}
+        <button onClick={handleClick}
         style={buttonIsClicked ? clickedLetterButtons:letterButtons}>{letter}</button>
     )
 }

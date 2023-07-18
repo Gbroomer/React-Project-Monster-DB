@@ -1,11 +1,11 @@
 import '../App.css';
 import React, { useEffect, useState } from "react"
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 // import Encounters from "./Encounters/Encounters"
 // import Home from "./Home"
 import MonsterContainer from "./Monsters/MonsterContainer"
 import Encounters from "./Encounters/Encounters"
-// import SpecificMonster from "./Monsters/SpecificMonster"
+import SpecificMonster from "./Monsters/SpecificMonster"
 // import User from "./UserInfo/User"
 import NavBar from "./NavBar"
 
@@ -16,20 +16,44 @@ function App() {
   const [userLogged, setUserLogged] = useState(false)
   const [users, setUsers] = useState([])
   const [user, setUser] = useState([])
+  const [selectedMonster, setSelectedMonster] = useState([])
 
-  useEffect(() => {
+  const fetchMonsters = () => {
     fetch("https://www.dnd5eapi.co/api/monsters")
       .then(res => res.json())
-      .then(data => setMonsters(data.results))
-  }, [])
+      .then(data => {
+        const fetchPromises = data.results.map(monster => {
+          return fetch(`https://www.dnd5eapi.co${monster.url}`)
+            .then(res => res.json());
+        });
+  
+        return Promise.all(fetchPromises);
+      })
+      .then(fetchedMonsters => {
+        const uniqueMonsters = fetchedMonsters.filter(monster => {
+          return !monsters.some(prevMonster => prevMonster.url === monster.url);
+        });
+        setMonsters(prevMonsters => [...prevMonsters, ...uniqueMonsters]);
+      })
+      .catch(error => {
+        console.error("Error fetching monsters:", error);
+      });
+  }
 
+  useEffect(() => {
+    fetchMonsters()
+  }, []);
+
+  console.log(monsters)
   useEffect(() => {
     fetch("http://localhost:3001/Users")
       .then(res => res.json())
       .then(data => setUsers(data))
   }, [])
 
-
+  function selectMonster(monster) {
+    setSelectedMonster(monster)
+  }
   function userLogin(input) {
     const userExists = users.find(user => user.name === input.name && user.password === input.password)
     if (userExists) {
@@ -39,7 +63,6 @@ function App() {
       alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
   }
-  console.log(monsters)
   function userSignUp(input) {
     const userExists = users.find(user => user.name.toLowerCase() === input.name.toLowerCase())
     if (userExists) {
@@ -69,7 +92,11 @@ function App() {
 
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
-      <MonsterContainer monsters={monsters} setMonsters={setMonsters}/>
+      <Routes>
+        <Route path="Monsters/:index" element = {<SpecificMonster monster = {selectedMonster}/>}/>
+        <Route path ="/" element ={userLogged ? <Encounters user = {user}/> : null} />
+        <Route path ="/Monsters" element ={<MonsterContainer monsters={monsters} selectMonster = {selectMonster}/>}/>
+      </Routes>
     </div>
   );
 }

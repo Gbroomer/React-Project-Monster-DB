@@ -87,7 +87,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
                     background: "lightred"
                 }}
             >
-                Home
+                Home 
             </NavLink>
             <NavLink
                 to="/Monsters"
@@ -96,7 +96,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
                     background: "lightred"
                 }}
             >
-                All Monsters
+                Monsters 
             </NavLink>
             <NavLink
                 to="/User"
@@ -105,7 +105,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
                     background: "lightred"
                 }}
             >
-                User Info
+                Create 
             </NavLink>
             <div>
                 <CheckLogged />

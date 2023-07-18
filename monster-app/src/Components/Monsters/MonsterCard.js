@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react"
+import { NavLink } from "react-router-dom"
 
-function MonsterCard ({ monsterName }) {
+
+function MonsterCard({ monster, selectMonster }) {
+
     return (
-        <div className="monster">
-        <h4>{monsterName}</h4>
+        <div>
+            <NavLink onClick = {(e) => {
+                selectMonster(monster)}}
+                to={monster.index} style={{ cursor: 'pointer', color: 'white' }}>{monster.name}</NavLink>
         </div>
     )
 }
