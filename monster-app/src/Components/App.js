@@ -1,12 +1,10 @@
 import '../App.css';
 import React, { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
-// import Encounters from "./Encounters/Encounters"
-// import Home from "./Home"
 import MonsterContainer from "./Monsters/MonsterContainer"
 import Encounters from "./Encounters/Encounters"
 import SpecificMonster from "./Monsters/SpecificMonster"
-// import User from "./UserInfo/User"
+import CreateForm from "./Create/CreateForm"
 import NavBar from "./NavBar"
 
 
@@ -26,7 +24,7 @@ function App() {
           return fetch(`https://www.dnd5eapi.co${monster.url}`)
             .then(res => res.json());
         });
-  
+
         return Promise.all(fetchPromises);
       })
       .then(fetchedMonsters => {
@@ -93,9 +91,10 @@ function App() {
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
       <Routes>
-        <Route path="Monsters/:index" element = {<SpecificMonster monster = {selectedMonster}/>}/>
-        <Route path ="/" element ={userLogged ? <Encounters user = {user}/> : null} />
-        <Route path ="/Monsters" element ={<MonsterContainer monsters={monsters} selectMonster = {selectMonster}/>}/>
+        <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} />} />
+        <Route path="/" element={userLogged ? <Encounters user={user} /> : null} />
+        <Route path="/Monsters" element={<MonsterContainer monsters={monsters} selectMonster={selectMonster} />} />
+        <Route path="Create-Monster" element={<CreateForm /> } />
       </Routes>
     </div>
   );

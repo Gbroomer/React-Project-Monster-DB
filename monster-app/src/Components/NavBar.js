@@ -13,20 +13,27 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     const linkStyles = {
         background: "grey",
         cursor: "pointer",
-        borderRadius: "25px",
-        margin: " 0px 20px",
-        width: "75px",
+        borderRadius: "50px",
+        margin: "25px 20px",
+        marginTop: "75px",
         color: "White",
-        padding: "5px"
+        padding: "5px",
+        fontFamily: "Papyrus",
+        fontSize: "25px",
+        fontWeight: "bold",
+        textDecoration: 'none'
     }
     const linkStylesClicked = {
         background: "red",
         cursor: "pointer",
-        borderRadius: "25px",
+        borderRadius: "50px",
         margin: " 0px 20px",
         width: "75px",
         color: "White",
-        padding: "5px"
+        fontFamily: "Papyrus",
+        fontSize: "25px",
+        fontWeight: "bold",
+        textDecoration: "none"
     }
     //     display: "inline-block",
     //     width: "50px",
