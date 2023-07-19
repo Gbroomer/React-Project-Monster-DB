@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Button } from "react-bootstrap";
 
 function AZButtons({ letter, filterLetteredMonsters, unfilterLetteredMonsters })  {
     const [buttonIsClicked, setbuttonIsClicked] = useState(false)
@@ -30,10 +31,16 @@ function AZButtons({ letter, filterLetteredMonsters, unfilterLetteredMonsters })
         setbuttonIsClicked(!buttonIsClicked)
     }
     
-    return(
-        <button onClick={handleClick}
-        style={buttonIsClicked ? clickedLetterButtons:letterButtons}>{letter}</button>
-    )
+    return (
+        <Button
+            onClick={handleClick}
+            variant={buttonIsClicked ? "danger" : "secondary"}
+            className="m-1 p-0 rounded-circle"
+            style={{ width: "25px", height: "25px", lineHeight: "1", fontSize: "12px" }}
+        >
+            {letter}
+        </Button>
+    );
 }
 
 export default AZButtons;
