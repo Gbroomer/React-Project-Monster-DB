@@ -5,16 +5,44 @@ import { NavLink } from "react-router-dom"
 function NavBar({ userLogin, userSignUp, userLogged, user }) {
 
     const [loginType, setLoginType] = useState(false)
+    const [homeClick, setHomeClick] = useState(true)
+    const [monsterClick, setMonsterClick] = useState(false)
+    const [createClick, setCreateClick] = useState(false)
+
 
     const linkStyles = {
-        display: "inline-block",
-        width: "50px",
-        padding: "12px",
-        margin: "0 6px 6px",
-        background: "red",
-        textDecoration: "none",
-        color: "Black",
+        background: "grey",
+        cursor: "pointer",
+        borderRadius: "50px",
+        margin: "25px 20px",
+        marginTop: "75px",
+        color: "White",
+        padding: "5px",
+        fontFamily: "Papyrus",
+        fontSize: "25px",
+        fontWeight: "bold",
+        textDecoration: 'none'
     }
+    const linkStylesClicked = {
+        background: "red",
+        cursor: "pointer",
+        borderRadius: "50px",
+        margin: " 0px 20px",
+        width: "75px",
+        color: "White",
+        fontFamily: "Papyrus",
+        fontSize: "25px",
+        fontWeight: "bold",
+        textDecoration: "none"
+    }
+    //     display: "inline-block",
+    //     width: "50px",
+    //     padding: "12px",
+    //     margin: "0 6px 6px",
+    //     background: "red",
+    //     textDecoration: "none",
+    //     color: "White",
+    // }
 
     const usernameLogin = useRef()
     const userPassLogin = useRef()
@@ -48,23 +76,23 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     function CheckLogged() {
         if (!userLogged) {
             return (
-            <div>
-                <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
-                    <div>
-                        <h4>{loginType ? "Sign-Up:" : "Login:"}</h4>
-                    </div>
-                    <div>
-                        <input type="text" name="username" placeholder="Username" ref={usernameLogin} />
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Password" ref={userPassLogin} />
-                    </div>
-                    <input type="submit" value="Submit" />
-                </form>
                 <div>
-                    <button onClick={handleSwitch}>{loginType ? "Have an account? Click to Login" : "New Here? Click to Sign Up"}</button>
+                    <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
+                        <div>
+                            <h4>{loginType ? "Sign-Up:" : "Login:"}</h4>
+                        </div>
+                        <div>
+                            <input type="text" name="username" placeholder="Username" ref={usernameLogin} />
+                        </div>
+                        <div>
+                            <input type="password" name="password" placeholder="Password" ref={userPassLogin} />
+                        </div>
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <div>
+                        <button onClick={handleSwitch}>{loginType ? "Have an account? Click to Login" : "New Here? Click to Sign Up"}</button>
+                    </div>
                 </div>
-            </div>
             )
         } else {
             return (
@@ -78,34 +106,53 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         }
     }
 
+    function navHome() {
+        setHomeClick(true)
+        setMonsterClick(false)
+        setCreateClick(false)
+    }
+    function navMonster() {
+        setHomeClick(false)
+        setMonsterClick(true)
+        setCreateClick(false)
+    }
+    function navCreate() {
+        setHomeClick(false)
+        setMonsterClick(false)
+        setCreateClick(true)
+    }
+
     return (
         <div>
             <NavLink
                 to="/"
-                style={linkStyles}
+                style={homeClick ? linkStylesClicked : linkStyles}
+                onClick={navHome}
                 activestyle={{
                     background: "lightred"
                 }}
             >
-                Home 
+                Home
             </NavLink>
             <NavLink
                 to="/Monsters"
-                style={linkStyles}
+                style={monsterClick ? linkStylesClicked : linkStyles}
+                onClick={navMonster}
                 activestyle={{
                     background: "lightred"
                 }}
             >
-                Monsters 
+                Monsters
             </NavLink>
             <NavLink
-                to="/User"
-                style={linkStyles}
+                to="/Create-Monster"
+                style={createClick ? linkStylesClicked : linkStyles}
+                onClick={navCreate}
                 activestyle={{
                     background: "lightred"
                 }}
             >
-                Create 
+                Create
             </NavLink>
             <div>
                 <CheckLogged />

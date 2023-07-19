@@ -5,32 +5,31 @@ import FilterButtons from "./FilterButtons"
 import MonsterList from "./MonsterList"
 
 function MonsterContainer({ monsters, selectMonster  }) {
+    const [filterAlphabetOn, setFilterAlphabetOn] = useState(false)
     const alphabetArray = ["A","B","C","D","E","F","G","H","I","J","K","L",
     "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
     const [filteredMonstersNames, setFilteredMonstersNames] = useState([])
 
     function addSelectedType(filteredTypes){ 
-        const filteredTypeMonsters = filteredMonstersNames.filter((monster) => {
-            filteredTypes.map((filter) => {
-                if(monster.name.toLowerCase() !== filter.name.toLowerCase()){
-                    return monster;
-                }
+        if(filterAlphabetOn) {
+            const filteredTypeMonsters = filteredMonstersNames.filter((monster) => {
+                return (filteredTypes.some((filter) => {
+                    return monster.name.toLowerCase() === filter.name.toLowerCase()
+                }))
             })
         })
-        
+        console.log(filteredTypeMonsters)
     }
 
     
     const filterLetteredMonsters = (letter) => {
-        // console.log(letter)
         const filterMonsters = monsters.filter((monster) => {
             return monster.name.toLowerCase().startsWith(String(letter))
             })
-
         setFilteredMonstersNames(filteredMonstersNames.concat(filterMonsters))
 
-        // console.log(filterMonsters)
+
         }
 
     const unfilterLetteredMonsters = (letter) => {
@@ -39,6 +38,14 @@ function MonsterContainer({ monsters, selectMonster  }) {
             })
         setFilteredMonstersNames(unfilterMonsters)
     }
+
+    useEffect(() => {
+        if (filteredMonstersNames.length === 0) {
+            setFilterAlphabetOn(false);
+        } else {
+            setFilterAlphabetOn(true);
+        }
+      }, [filteredMonstersNames]);
 
     const eachMonster = filteredMonstersNames.map((monster, index) =>  
         <MonsterList key={index} monster={monster} 
@@ -59,7 +66,7 @@ function MonsterContainer({ monsters, selectMonster  }) {
     }))
 
     // function addSelectedType(filteredTypes)  {
-    //     console.log(filteredTypes)
+    //     setFilteredMonstersNames([...filteredMonstersNames, filteredTypes]);
     // }
     
 

@@ -2,14 +2,12 @@
 function SpecificMonster({ monster }) {
 
     const {
-        index,
         name,
         size,
         type,
         alignment,
         armor_class,
         hit_points,
-        hit_dice,
         hit_points_roll,
         speed,
         strength,
@@ -29,8 +27,6 @@ function SpecificMonster({ monster }) {
         xp,
         special_abilities,
         actions,
-        image,
-        url,
         legendary_actions
     } = monster;
 
