@@ -3,6 +3,7 @@ import CreateSavingThrows from "./CreateSavingThrows"
 import CreateSkills from "./CreateSkills"
 import CreateStats from "./CreateStats"
 import CreateSpeed from "./CreateSpeed"
+import CreateDamageConditions from "./CreateDamageConditions"
 
 function CreateForm() {
     const [savingThrow, setSavingThrow] = useState({
@@ -72,7 +73,6 @@ function CreateForm() {
             [index]: value,
         }))
     }
-
     const handleSavingThrow = (name, checked) => {
         setSavingThrow((prevState) => ({
             ...prevState,
@@ -90,7 +90,6 @@ function CreateForm() {
             }
         }
     }
-
     const handleProficiencyChangeST = (e) => {
 
         const { name, value } = e.target
@@ -154,24 +153,23 @@ function CreateForm() {
             }
         }
     }
-    console.log(createdMonster)
-
-
     return (
         <div>
-            <form className="Create-Form">
+            <form className="name_form">
                 <div className='Name'>
                     <label>Name:
-                        <input required type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
+                        <input type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
                             const index = 'name'
                             const value = e.target.value
                             handleChange(index, value)
                         }} />
                     </label>
                 </div>
+            </form>
+            <form className="size_form">
                 <div className="size">
                     <label>Size:
-                        <select required id="size" name="size" onChange={(e) => {
+                        <select id="size" name="size" onChange={(e) => {
                             const index = 'size'
                             const value = e.target.value
                             handleChange(index, value)
@@ -183,6 +181,8 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
+            </form>
+            <form className="type_form">
                 <div className="Type">
                     <label>Type:
                         <select id="Type" name="Type" onChange={(e) => {
@@ -207,6 +207,8 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
+            </form>
+            <form className="alignment_form">
                 <div className="alignment">
                     <label>Alignment:
                         <select id="alignment" name="alignment" onChange={(e) => {
@@ -226,10 +228,12 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
+            </form>
+            <form className="ac_form">
                 <div className="armor_class">
                     <p>Armor Class:</p>
                     <label>Number:
-                        <input required type="number" id="armor-class" name="AC" placeholder="10" onChange={(e) => {
+                        <input type="number" id="armor-class" name="AC" placeholder="10" onChange={(e) => {
                             const index = 'armor_class'
                             const value = {
                                 type: createdMonster.armor_class.type,
@@ -239,7 +243,7 @@ function CreateForm() {
                         }} />
                     </label>
                     <label>Type:
-                        <input required type="text" id="armor-class-type" name="AC" placeholder="Natural" onChange={(e) => {
+                        <input type="text" id="armor-class-type" name="AC" placeholder="Natural" onChange={(e) => {
                             const index = 'armor_class'
                             const value = {
                                 type: e.target.value,
@@ -249,12 +253,14 @@ function CreateForm() {
                         }} />
                     </label>
                 </div>
+            </form>
+            <form className="hp_form">
                 <div className="hit_points">
                     <h5>Hit Points:</h5>
                     <ul>
                         <li>
                             <label>Hit Point Total:
-                                <input required type="number" id="hit_points" name="HP" placeholder="10" onChange={(e) => {
+                                <input type="number" id="hit_points" name="HP" placeholder="10" onChange={(e) => {
                                     const index = 'hit_points'
                                     const value = e.target.value
                                     handleChange(index, value)
@@ -263,7 +269,7 @@ function CreateForm() {
                         </li>
                         <li>
                             <label>Hit Points Dice Roll:
-                                <input required type="text" id="hit_points_roll" name="HP Dice" placeholder="ex: 1d10+4" onChange={(e) => {
+                                <input type="text" id="hit_points_roll" name="HP Dice" placeholder="ex: 1d10+4" onChange={(e) => {
                                     const index = 'hit_points_roll'
                                     const value = e.target.value
                                     handleChange(index, value)
@@ -272,19 +278,26 @@ function CreateForm() {
                         </li>
                     </ul>
                 </div>
+            </form>
+            <form className="speed_form">
                 <div speed="speed">
                     <CreateSpeed handleChange={handleChange} createdMonster={createdMonster} />
                 </div>
+            </form>
+            <form className="stats_form">
                 <div className="stats">
-                    <CreateStats handleChange = { handleChange } />
-                    
-                </div>
-                <div className="proficiencies">
-                    <CreateSavingThrows handleSavingThrow = { handleSavingThrow } handleProficiencyChangeST = { handleProficiencyChangeST } savingThrow = { savingThrow } />
-                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill = { skill } />
+                    <CreateStats handleChange={handleChange} />
                 </div>
             </form>
-
+            <form className="proficiencies_form">
+                <div className="proficiencies">
+                    <CreateSavingThrows handleSavingThrow={handleSavingThrow} handleProficiencyChangeST={handleProficiencyChangeST} savingThrow={savingThrow} />
+                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
+                </div>
+            </form>
+            <div className="Conditions">
+                <CreateDamageConditions />
+            </div>
         </div>
     )
 }
