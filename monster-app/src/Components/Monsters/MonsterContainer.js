@@ -18,8 +18,9 @@ function MonsterContainer({ monsters, selectMonster  }) {
                     return monster.name.toLowerCase() === filter.name.toLowerCase()
                 }))
             })
-        })
-        console.log(filteredTypeMonsters)
+            console.log(filteredTypeMonsters)
+        }
+        
     }
 
     
