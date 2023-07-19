@@ -16,31 +16,29 @@ function App() {
   const [user, setUser] = useState([])
   const [selectedMonster, setSelectedMonster] = useState([])
 
-  const fetchMonsters = () => {
-    fetch("https://www.dnd5eapi.co/api/monsters")
-      .then(res => res.json())
-      .then(data => {
-        const fetchPromises = data.results.map(monster => {
-          return fetch(`https://www.dnd5eapi.co${monster.url}`)
-            .then(res => res.json());
-        });
-
-        return Promise.all(fetchPromises);
-      })
-      .then(fetchedMonsters => {
-        const uniqueMonsters = fetchedMonsters.filter(monster => {
-          return !monsters.some(prevMonster => prevMonster.url === monster.url);
-        });
-        setMonsters(prevMonsters => [...prevMonsters, ...uniqueMonsters]);
-      })
-      .catch(error => {
-        console.error("Error fetching monsters:", error);
-      });
-  }
-
   useEffect(() => {
-    fetchMonsters()
-  }, []);
+    if(monsters.length === 0) {
+      fetch("https://www.dnd5eapi.co/api/monsters")
+        .then(res => res.json())
+        .then(data => {
+          const fetchPromises = data.results.map(monster => {
+            return fetch(`https://www.dnd5eapi.co${monster.url}`)
+              .then(res => res.json());
+          });
+  
+          return Promise.all(fetchPromises);
+        })
+        .then(fetchedMonsters => {
+          const uniqueMonsters = fetchedMonsters.filter(monster => {
+            return !monsters.some(prevMonster => prevMonster.url === monster.url);
+          });
+          setMonsters(prevMonsters => [...prevMonsters, ...uniqueMonsters]);
+        })
+        .catch(error => {
+          console.error("Error fetching monsters:", error);
+        });
+    }
+  }, [monsters]);
 
   useEffect(() => {
     fetch("http://localhost:3001/Users")
@@ -85,6 +83,7 @@ function App() {
         })
     }
   }
+  console.log(monsters)
   return (
 
     <div className="App">

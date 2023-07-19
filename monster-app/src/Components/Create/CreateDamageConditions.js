@@ -1,23 +1,24 @@
 import CreateConditionInput from "./CreateConditionInput"
 import { useState } from "react"
 
-function CreateDamageConditions() {
-    const [damVuln, setDamVuln] = useState([1])
-    const [damRes, setDamRes] = useState([1])
-    const [damIm, setDamIm] = useState([1])
-    const [conIm, setConIm] = useState([1])
+function CreateDamageConditions({handleChange, createdMonster}) {
+    const [damVuln, setDamVuln] = useState([0])
+    const [damRes, setDamRes] = useState([0])
+    const [damIm, setDamIm] = useState([0])
+    const [conIm, setConIm] = useState([0])
 
-    const damageVulnerabilities = damVuln.map(() => <CreateConditionInput damType={"damage_vulnerabilities"} />)
-    const damageResistances = ''
-    const damageImmunities = ''
-    const conditionImmunities = ''
+    const damageVulnerabilities = damVuln.map((index) => <CreateConditionInput type={"damage_vulnerabilities"} handleChange={handleChange} createdMonster={createdMonster} key={index} index = {index}/>)
+    const damageResistances = damRes.map((index) => <CreateConditionInput type={"damage_resistances"} handleChange={handleChange} createdMonster={createdMonster} key={index} index = {index}/>)
+    const damageImmunities = damIm.map((index) => <CreateConditionInput type={"damage_immunities"} handleChange={handleChange} createdMonster={createdMonster} key={index} index = {index}/>)
+    const conditionImmunities = conIm.map((index) => <CreateConditionInput type={"condition_immunities"} handleChange={handleChange} createdMonster={createdMonster} key={index} index= {index}/>)
 
     function adjustDamVuln(truthiness) {
         if (truthiness) {
 
         }
         else {
-            setDamVuln(damVuln => [...damVuln, 1])
+            setDamVuln(damVuln => [...damVuln, (damVuln.length -1) + 1])
+
         }
     }
     function adjustDamRes(truthiness) {
@@ -25,30 +26,27 @@ function CreateDamageConditions() {
 
         }
         else {
-            setDamRes(damRes => [...damRes, 1])
+            setDamRes(damRes => [...damRes, (damRes.length -1) + 1])
+
         }
     }
     function adjustDamIm(truthiness) {
-        truthiness.preventDefault()
         if (truthiness) {
 
         }
         else {
-            setDamIm(damIm => [...damIm, 1])
+            setDamIm(damIm => [...damIm, (damIm.length - 1) + 1])
+
         }
     }
     function adjustConIm(truthiness) {
-        truthiness.preventDefault()
         if (truthiness) {
 
         }
         else {
-            setConIm(conIm => [...conIm, 1])
+            setConIm(conIm => [...conIm, (conIm.length - 1) + 1])
         }
     }
-
-    console.log(damVuln, damRes, damIm, conIm)
-
     return (
         <>
             <div className="damage vulnerabilities">

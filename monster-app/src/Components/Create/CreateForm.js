@@ -53,19 +53,20 @@ function CreateForm() {
         wisdom: '',
         charisma: '',
         proficiencies: [],
-        damage_vulnerabilities: '',
-        damage_resistances: '',
-        damage_immunities: '',
-        condition_immunities: '',
-        senses: '',
-        languages: '',
+        damage_vulnerabilities: [],
+        damage_resistances: [],
+        damage_immunities: [],
+        condition_immunities: [],
+        senses: [],
+        languages: [],
         challenge_rating: '',
         xp: '',
-        special_abilities: '',
-        actions: '',
-        legendary_actions: ''
+        special_abilities: [],
+        actions: [],
+        legendary_actions: []
     })
 
+    console.log(createdMonster)
 
     const handleChange = (index, value) => {
         setCreatedMonster((prevState) => ({
@@ -296,7 +297,7 @@ function CreateForm() {
                 </div>
             </form>
             <div className="Conditions">
-                <CreateDamageConditions />
+                <CreateDamageConditions handleChange={handleChange} createdMonster = {createdMonster}/>
             </div>
         </div>
     )

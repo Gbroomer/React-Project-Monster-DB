@@ -84,29 +84,29 @@ function SpecificMonster({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {damage_vulnerabilities.map((vulnerability, index) => (
-                                <p key={index}>{vulnerability.index}</p>
+                                <p key={index}>{vulnerability}</p>
                             ))}
                         </div>
                     )}
                     {damage_resistances.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Damage Resistances:</h4>
                             {damage_resistances.map((resistance, index) => (
-                                <p key={index}>{resistance.index}</p>
+                                <p key={index}>{resistance}</p>
                             ))}
                         </div>
                     )}
                     {damage_immunities.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Damage Immunities:</h4>
                             {damage_immunities.map((immunity, index) => (
-                                <p key={index}>{immunity.index}</p>
+                                <p key={index}>{immunity}</p>
                             ))}
                         </div>
                     )}
                     {condition_immunities.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Condition Immunities:</h4>
                             {condition_immunities.map((immunity, index) => (
                                 <p key={index}>{immunity.index}</p>
                             ))}
