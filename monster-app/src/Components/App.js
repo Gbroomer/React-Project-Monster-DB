@@ -42,7 +42,6 @@ function App() {
     fetchMonsters()
   }, []);
 
-  console.log(monsters)
   useEffect(() => {
     fetch("http://localhost:3001/Users")
       .then(res => res.json())
