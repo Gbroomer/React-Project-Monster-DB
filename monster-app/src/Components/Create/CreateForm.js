@@ -4,6 +4,7 @@ import CreateSkills from "./CreateSkills"
 import CreateStats from "./CreateStats"
 import CreateSpeed from "./CreateSpeed"
 import CreateDamageConditions from "./CreateDamageConditions"
+import CreateSenses from "./CreateSenses"
 
 function CreateForm() {
     const [savingThrow, setSavingThrow] = useState({
@@ -34,6 +35,12 @@ function CreateForm() {
         Stealth: false,
         Survival: false,
     })
+    const [senses, setSenses] = useState({
+        tremorsense: false,
+        darkvision: false,
+        blindsight: false,
+        truesight: false
+    })
     const [createdMonster, setCreatedMonster] = useState({
         name: '',
         size: 'small',
@@ -57,7 +64,7 @@ function CreateForm() {
         damage_resistances: [],
         damage_immunities: [],
         condition_immunities: [],
-        senses: [],
+        senses: {},
         languages: [],
         challenge_rating: '',
         xp: '',
@@ -131,6 +138,22 @@ function CreateForm() {
             }
         }
     }
+    const handleSenses = (name, checked) => {
+        setSenses((prevState) => ({
+            ...prevState,
+            [name]: checked
+        }))
+        if (!checked) {
+            const updateSenses = {...createdMonster.senses}
+            delete updateSenses[name]
+            handleChange(`senses`, updateSenses)
+        }
+    }
+    const handleSensesChange = (e) => {
+        const { name, value } = e.target
+        handleChange("senses", {...createdMonster.senses, [name]: value})
+    }
+
     const handleProficiencyChangeSkill = (e) => {
 
         const { name, value } = e.target
@@ -297,7 +320,11 @@ function CreateForm() {
                 </div>
             </form>
             <div className="Conditions">
-                <CreateDamageConditions handleChange={handleChange} createdMonster = {createdMonster}/>
+                <CreateDamageConditions handleChange={handleChange} createdMonster={createdMonster} />
+            </div>
+            <div className="senses">
+                <h5>Senses: </h5>
+                <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
             </div>
         </div>
     )
