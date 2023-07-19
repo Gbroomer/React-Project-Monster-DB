@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { NavLink } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 function NavBar({ userLogin, userSignUp, userLogged, user }) {
@@ -123,42 +124,53 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     }
 
     return (
-        <div>
-            <NavLink
-                to="/"
-                style={homeClick ? linkStylesClicked : linkStyles}
-                onClick={navHome}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Home
-            </NavLink>
-            <NavLink
-                to="/Monsters"
-                style={monsterClick ? linkStylesClicked : linkStyles}
-                onClick={navMonster}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Monsters
-            </NavLink>
-            <NavLink
-                to="/Create-Monster"
-                style={createClick ? linkStylesClicked : linkStyles}
-                onClick={navCreate}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Create
-            </NavLink>
-            <div>
-                <CheckLogged />
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid d-flex justify-content-between">
+                <div>
+                    <CheckLogged /> {/* Move the login piece to the left */}
+                </div>
+
+                <div>
+                    <NavLink className="navbar-brand" to="/" onClick={navHome}>
+
+                    </NavLink>
+                </div>
+
+                <ul className="navbar-nav mx-auto">
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-primary ${homeClick ? "active" : ""
+                                }`}
+                            to="/"
+                            onClick={navHome}
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-success ${monsterClick ? "active" : ""
+                                }`}
+                            to="/Monsters"
+                            onClick={navMonster}
+                        >
+                            Monsters
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-danger ${createClick ? "active" : ""
+                                }`}
+                            to="/Create-Monster"
+                            onClick={navCreate}
+                        >
+                            Create
+                        </NavLink>
+                    </li>
+                </ul>
             </div>
-        </div>
-    )
+        </nav>
+    );
 }
 
-export default NavBar
+export default NavBar;

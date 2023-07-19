@@ -3,6 +3,7 @@ import CreateSavingThrows from "./CreateSavingThrows"
 import CreateSkills from "./CreateSkills"
 import CreateStats from "./CreateStats"
 import CreateSpeed from "./CreateSpeed"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function CreateForm() {
     const [savingThrow, setSavingThrow] = useState({
