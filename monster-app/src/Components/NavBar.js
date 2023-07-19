@@ -9,33 +9,34 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     const [homeClick, setHomeClick] = useState(true)
     const [monsterClick, setMonsterClick] = useState(false)
     const [createClick, setCreateClick] = useState(false)
+    const [alertVisible, setAlertVisible] = useState(false)
 
 
-    const linkStyles = {
-        background: "grey",
-        cursor: "pointer",
-        borderRadius: "50px",
-        margin: "25px 20px",
-        marginTop: "75px",
-        color: "White",
-        padding: "5px",
-        fontFamily: "Papyrus",
-        fontSize: "25px",
-        fontWeight: "bold",
-        textDecoration: 'none'
-    }
-    const linkStylesClicked = {
-        background: "red",
-        cursor: "pointer",
-        borderRadius: "50px",
-        margin: " 0px 20px",
-        width: "75px",
-        color: "White",
-        fontFamily: "Papyrus",
-        fontSize: "25px",
-        fontWeight: "bold",
-        textDecoration: "none"
-    }
+    // const linkStyles = {
+    //     background: "grey",
+    //     cursor: "pointer",
+    //     borderRadius: "50px",
+    //     margin: "25px 20px",
+    //     marginTop: "75px",
+    //     color: "White",
+    //     padding: "5px",
+    //     fontFamily: "Papyrus",
+    //     fontSize: "25px",
+    //     fontWeight: "bold",
+    //     textDecoration: 'none'
+    // }
+    // const linkStylesClicked = {
+    //     background: "red",
+    //     cursor: "pointer",
+    //     borderRadius: "50px",
+    //     margin: " 0px 20px",
+    //     width: "75px",
+    //     color: "White",
+    //     fontFamily: "Papyrus",
+    //     fontSize: "25px",
+    //     fontWeight: "bold",
+    //     textDecoration: "none"
+    // }
     //     display: "inline-block",
     //     width: "50px",
     //     padding: "12px",
@@ -63,7 +64,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
                 userLogin(user)
             }
         } else {
-            alert('Please Input All Fields')
+            setAlertVisible(true);
         }
 
         e.target.reset()
@@ -127,7 +128,12 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid d-flex justify-content-between">
                 <div>
-                    <CheckLogged /> {/* Move the login piece to the left */}
+                {alertVisible && ( 
+            <div className="alert alert-danger" role="alert">
+              Please Input All Fields
+            </div>
+          )}
+                    <CheckLogged /> 
                 </div>
 
                 <div>
