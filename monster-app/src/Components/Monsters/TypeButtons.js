@@ -19,14 +19,12 @@ function TypeButtons({ type, addSelectedType, monsters }){
     }
 
     function handleClick (e) {
-        setSelectedType(e.target.value)
         setTypeButtonClicked(!typeButtonClicked)
+        addSelectedType(filteredTypes)
     }
 
     const filteredTypes = monsters.filter((monster) =>
-    monster.type === selectedType)
-
-    addSelectedType(filteredTypes)
+    monster.type === type)
 
     return(
         <div>

@@ -18,7 +18,7 @@ function MonsterContainer({ monsters, selectMonster  }) {
                 }
             })
         })
-        console.log(filteredTypeMonsters)
+        
     }
 
     
@@ -59,7 +59,7 @@ function MonsterContainer({ monsters, selectMonster  }) {
     }))
 
     // function addSelectedType(filteredTypes)  {
-    //     setFilteredMonstersNames([...filteredMonstersNames, filteredTypes]);
+    //     console.log(filteredTypes)
     // }
     
 
