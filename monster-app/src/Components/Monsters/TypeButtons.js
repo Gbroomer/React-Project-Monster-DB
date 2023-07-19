@@ -3,7 +3,6 @@ import React, { useState } from "react"
 function TypeButtons({ type, addSelectedType, monsters }){
 
     const [typeButtonClicked, setTypeButtonClicked] = useState(false)
-    const [selectedType, setSelectedType] = useState([])
 
     const specificTypeButton = {
         background: "grey",
@@ -19,14 +18,14 @@ function TypeButtons({ type, addSelectedType, monsters }){
     }
 
     function handleClick (e) {
-        setSelectedType(e.target.value)
         setTypeButtonClicked(!typeButtonClicked)
+        addSelectedType(filteredTypes)
     }
 
     const filteredTypes = monsters.filter((monster) =>
-    monster.type === selectedType)
+    monster.type === type)
 
-    addSelectedType(filteredTypes)
+    // console.log(filteredTypes)
 
     return(
         <div>
