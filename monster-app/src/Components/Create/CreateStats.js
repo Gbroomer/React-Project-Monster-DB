@@ -15,7 +15,7 @@ function CreateStats({ handleChange }) {
                 <li>
                     <label>Dexterity:
                         <input type="number" id="dexterity_stat" name="dex_stat" placeholder="10" onChange={(e) => {
-                            const index = 'detxterity'
+                            const index = 'dexterity'
                             const value = e.target.value
                             handleChange(index, value)
                         }} />

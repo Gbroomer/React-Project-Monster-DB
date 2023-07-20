@@ -1,5 +1,5 @@
 
-function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
+function CreateSkills({ handleProficiencyChangeSkill, handleSkillCheck, skill }) {
     return (
         <>
             <h4>Skills: </h4>
@@ -10,7 +10,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Acrobatics && (
                         <label className="skill">Value:
-                            <input type="number" id="acrobatics_value" name="Acrobatics" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="acrobatics_value" name="Acrobatics" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -20,7 +20,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Animal_handling && (
                         <label className="skill">Value:
-                            <input type="number" id="animal_handling_value" name="Animal_handling" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="animal_handling_value" name="Animal_handling" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -30,7 +30,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Arcana && (
                         <label className="skill">Value:
-                            <input type="number" id="arcana_value" name="Arcana" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="arcana_value" name="Arcana" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -40,7 +40,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Athletics && (
                         <label className="skill">Value:
-                            <input type="number" id="athletics_value" name="Athletics" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="athletics_value" name="Athletics" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -50,7 +50,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Deception && (
                         <label className="skill">Value:
-                            <input type="number" id="deception_value" name="Deception" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="deception_value" name="Deception" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -60,7 +60,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.History && (
                         <label className="skill">Value:
-                            <input type="number" id="history_value" name="History" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="history_value" name="History" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -70,7 +70,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Insight && (
                         <label className="skill">Value:
-                            <input type="number" id="insight_value" name="Insight" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="insight_value" name="Insight" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -80,7 +80,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Intimidation && (
                         <label className="skill">Value:
-                            <input type="number" id="intimidation_value" name="Intimidation" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="intimidation_value" name="Intimidation" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -90,7 +90,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Investigation && (
                         <label className="skill">Value:
-                            <input type="number" id="investigation_value" name="Investigation" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="investigation_value" name="Investigation" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -100,7 +100,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Medicine && (
                         <label className="skill">Value:
-                            <input type="number" id="medicine_value" name="Medicine" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="medicine_value" name="Medicine" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -110,7 +110,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Nature && (
                         <label className="skill">Value:
-                            <input type="number" id="nature_value" name="Nature" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="nature_value" name="Nature" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -120,7 +120,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Perception && (
                         <label className="skill">Value:
-                            <input type="number" id="perception_value" name="Perception" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="perception_value" name="Perception" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -130,7 +130,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Performance && (
                         <label className="skill">Value:
-                            <input type="number" id="performance_value" name="Performance" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="performance_value" name="Performance" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -140,7 +140,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Persuasion && (
                         <label className="skill">Value:
-                            <input type="number" id="Persuasion_value" name="Persuasion" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="Persuasion_value" name="Persuasion" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -150,7 +150,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Religion && (
                         <label className="skill">Value:
-                            <input type="number" id="religion_value" name="Religion" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="religion_value" name="Religion" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -160,7 +160,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Sleight_of_hand && (
                         <label className="skill">Value:
-                            <input type="number" id="sleight_of_hand_value" name="Sleight_of_hand" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="sleight_of_hand_value" name="Sleight_of_hand" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -170,7 +170,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Stealth && (
                         <label className="skill">Value:
-                            <input type="number" id="stealth_value" name="stealth" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="stealth_value" name="stealth" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>
@@ -180,7 +180,7 @@ function CreateSkills({ handleProficiencyChangeST, handleSkillCheck, skill }) {
                     </label>
                     {skill.Survival && (
                         <label className="skill">Value:
-                            <input type="number" id="survival_value" name="Survival" placeholder="0" onChange={(e) => handleProficiencyChangeST(e)} />
+                            <input type="number" id="survival_value" name="Survival" placeholder="0" onChange={(e) => handleProficiencyChangeSkill(e)} />
                         </label>
                     )}
                 </li>

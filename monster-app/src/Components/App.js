@@ -6,7 +6,6 @@ import Encounters from "./Encounters/Encounters"
 import SpecificMonster from "./Monsters/SpecificMonster"
 import CreateForm from "./Create/CreateForm"
 import NavBar from "./NavBar"
-import axios from 'axios'
 
 
 function App() {
@@ -47,16 +46,21 @@ function App() {
       .then(data => setUsers(data))
   }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:3001/Users/1", {
-      method: 'Post',
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({
-        Test: 'test'
-      })
-    },
-    )
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/Users/1", {
+  //     method: 'PATCH',
+  //     headers: { "Content-Type": "application/json"},
+  //     body: JSON.stringify({
+  //       encounters: [
+  //         ...users[0].encounters,
+  //         {
+  //           test: 'test'
+  //         }
+  //       ]
+  //     })
+  //   },
+  //   )
+  // }, [])
 
   function selectMonster(monster) {
     setSelectedMonster(monster)
@@ -95,6 +99,12 @@ function App() {
         })
     }
   }
+  function pushNewMonster(monster) {
+    setMonsters([
+      ...monsters,
+      monster
+    ])
+  }
   console.log(monsters)
   return (
 
@@ -104,7 +114,7 @@ function App() {
         <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} />} />
         <Route path="/" element={userLogged ? <Encounters user={user} /> : null} />
         <Route path="/Monsters" element={<MonsterContainer monsters={monsters} selectMonster={selectMonster} />} />
-        <Route path="Create-Monster" element={<CreateForm /> } />
+        <Route path="Create-Monster" element={<CreateForm pushNewMonster = {pushNewMonster} /> } />
       </Routes>
     </div>
   );

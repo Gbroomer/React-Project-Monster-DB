@@ -6,9 +6,8 @@ import CreateSpeed from "./CreateSpeed"
 import CreateDamageConditions from "./CreateDamageConditions"
 import CreateSenses from "./CreateSenses"
 import CreateSpecialAbilities from "./CreateSpecialAbilities"
-import axios from "axios";
 
-function CreateForm() {
+function CreateForm({ pushNewMonster }) {
     const [savingThrow, setSavingThrow] = useState({
         STR: false,
         DEX: false,
@@ -44,14 +43,15 @@ function CreateForm() {
         truesight: false
     })
     const [createdMonster, setCreatedMonster] = useState({
+        index: '',
         name: '',
         size: 'small',
         type: 'abberation',
         alignment: 'lawful good',
-        armor_class: {
+        armor_class: [{
             type: '',
             value: ''
-        },
+        }],
         hit_points: '',
         hit_points_roll: '',
         speed: {},
@@ -116,7 +116,7 @@ function CreateForm() {
                     value: Number(value),
                     proficiency: {
                         index: `saving-throw-${name.toLowerCase()}`,
-                        name: `Saving-Throw: ${name.toUpperCase()}`,
+                        name: `Saving-Throw: ${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`,
                     }
                 }
                 handleChange("proficiencies", [...createdMonster.proficiencies, newProficiency])
@@ -146,14 +146,14 @@ function CreateForm() {
             [name]: checked
         }))
         if (!checked) {
-            const updateSenses = {...createdMonster.senses}
+            const updateSenses = { ...createdMonster.senses }
             delete updateSenses[name]
             handleChange(`senses`, updateSenses)
         }
     }
     const handleSensesChange = (e) => {
         const { name, value } = e.target
-        handleChange("senses", {...createdMonster.senses, [name]: value})
+        handleChange("senses", { ...createdMonster.senses, [name]: value })
     }
 
     const handleProficiencyChangeSkill = (e) => {
@@ -172,7 +172,7 @@ function CreateForm() {
                     value: Number(value),
                     proficiency: {
                         index: `skill-${name.toLowerCase()}`,
-                        name: `Skill: ${name.toUpperCase()}`,
+                        name: `Skill: ${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`,
                     }
                 }
                 handleChange("proficiencies", [...createdMonster.proficiencies, newProficiency])
@@ -186,6 +186,9 @@ function CreateForm() {
                     <label>Name:
                         <input type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
                             handleChange('name', e.target.value)
+                            const indexify = e.target.value.toLowerCase().replace(/\s+/g, '-')
+                            //replace the ' ' spaces with '-' in indexify (if they exist)
+                            handleChange('index', indexify)
                         }} />
                     </label>
                 </div>
@@ -259,20 +262,20 @@ function CreateForm() {
                     <label>Number:
                         <input type="number" id="armor-class" name="AC" placeholder="10" onChange={(e) => {
                             const index = 'armor_class'
-                            const value = {
-                                type: createdMonster.armor_class.type,
+                            const value = [{
+                                type: createdMonster.armor_class[0].type,
                                 value: e.target.value
-                            }
+                            }]
                             handleChange(index, value)
                         }} />
                     </label>
                     <label>Type:
                         <input type="text" id="armor-class-type" name="AC" placeholder="Natural" onChange={(e) => {
                             const index = 'armor_class'
-                            const value = {
+                            const value = [{
                                 type: e.target.value,
-                                value: createdMonster.armor_class.value
-                            }
+                                value: createdMonster.armor_class[0].value
+                            }]
                             handleChange(index, value)
                         }} />
                     </label>
@@ -331,7 +334,7 @@ function CreateForm() {
                 <form>
                     <input type="text" id="languages" name="languages" placeholder="Common, Elvish, telepathy 120ft." onChange={(e) => {
                         handleChange("languages", e.target.value)
-                    }}/>
+                    }} />
                 </form>
             </div>
             <div className="challenge_rating">
@@ -339,7 +342,7 @@ function CreateForm() {
                 <form>
                     <input type="number" id="challenge_rating" name="challenge_rating" placeholder=".5, 5, 15" onChange={(e) => {
                         handleChange("challenge_rating", e.target.value)
-                    }}/>
+                    }} />
                 </form>
             </div>
             <div className="xp">
@@ -347,11 +350,16 @@ function CreateForm() {
                 <form>
                     <input type="number" id="xp" name="xp" placeholder="50, 250, 7500" onChange={(e) => {
                         handleChange("xp", e.target.value)
-                    }}/>
+                    }} />
                 </form>
             </div>
             <div className="abilities">
-                <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster}/>
+                <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster} />
+            </div>
+            <div className="submit_button">
+                <br>
+                </br>
+                <button onClick={() => pushNewMonster(createdMonster)}>Submit</button>
             </div>
         </div>
     )
