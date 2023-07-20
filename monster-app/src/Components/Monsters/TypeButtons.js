@@ -25,7 +25,7 @@ function TypeButtons({ type, addSelectedType, monsters }){
     const filteredTypes = monsters.filter((monster) =>
     monster.type === type)
 
-    // console.log(filteredTypes)
+    addSelectedType(filteredTypes)
 
     return(
         <div>

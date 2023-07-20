@@ -18,11 +18,9 @@ function MonsterContainer({ monsters, selectMonster  }) {
                     return monster.name.toLowerCase() === filter.name.toLowerCase()
                 }))
             })
-            setFilteredMonstersNames(filteredTypeMonsters)
-        } else {
-            setFilteredMonstersNames(filteredTypes)
+            console.log(filteredTypeMonsters)
         }
-    
+        
     }
 
     
@@ -68,7 +66,10 @@ function MonsterContainer({ monsters, selectMonster  }) {
         challenge_rating: monster.challenge_rating 
     }))
 
-
+    // function addSelectedType(filteredTypes)  {
+    //     setFilteredMonstersNames([...filteredMonstersNames, filteredTypes]);
+    // }
+    
 
     return (
         <div className="allMonsters">
