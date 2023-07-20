@@ -25,37 +25,63 @@ function CreateDamageConditions({handleChange, createdMonster}) {
                 }
                 return updatedDamVuln
             })
-            let updatedArray
-            if (type === "condition_immunities") {
-                updatedArray = [...createdMonster[type]]
-                updatedArray.splice(index, 1)
-            } else {
-                updatedArray = [...createdMonster[type]]
-                updatedArray.splice(index, 1)
-            }
-    
+            let updatedArray = [...createdMonster[type]]
+            updatedArray.splice(index, 1)
             handleChange(type, updatedArray)
         }
     }
-    function adjustDamRes(truthyness, index) {
+    function adjustDamRes(truthyness, index, type) {
         if(truthyness) {
             setDamRes(damRes => [...damRes, (damRes.length -1) + 1])
         } else {
+            setDamRes((prevDamRes) => {
+                let updatedDamRes = [...prevDamRes]
+                updatedDamRes.splice(index, 1)
 
+                for(let i=index; i < updatedDamRes.length; i++) {
+                    updatedDamRes[i] = updatedDamRes[i] - 1;
+                }
+                return updatedDamRes
+            })
+            let updatedArray = [...createdMonster[type]]
+            updatedArray.splice(index, 1)
+            handleChange(type, updatedArray)
         }
     }
-    function adjustDamIm(truthyness, index) {
+    function adjustDamIm(truthyness, index, type) {
         if(truthyness) {
             setDamIm(damIm => [...damIm, (damIm.length - 1) + 1])
         } else {
+            setDamIm((prevDamIm) => {
+                let updatedDamIm = [...prevDamIm]
+                updatedDamIm.splice(index, 1)
 
+                for(let i=index; i < updatedDamIm.length; i++) {
+                    updatedDamIm[i] = updatedDamIm[i] - 1;
+                }
+                return updatedDamIm
+            })
+            let updatedArray = [...createdMonster[type]]
+            updatedArray.splice(index, 1)
+            handleChange(type, updatedArray)
         }
     }
-    function adjustConIm(truthyness, index) {
+    function adjustConIm(truthyness, index, type) {
         if(truthyness) {
             setConIm(conIm => [...conIm, (conIm.length - 1) + 1])
         } else {
+            setDamVuln((prevConIm) => {
+                let updatedConIm = [...prevConIm]
+                updatedConIm.splice(index, 1)
 
+                for(let i=index; i < updatedConIm.length; i++) {
+                    updatedConIm[i] = updatedConIm[i] - 1;
+                }
+                return updatedConIm
+            })
+            let updatedArray = [...createdMonster[type]]
+            updatedArray.splice(index, 1)
+            handleChange(type, updatedArray)
         }
     }
     function removeCond(e, index, type) {
@@ -72,28 +98,28 @@ function CreateDamageConditions({handleChange, createdMonster}) {
     }
     return (
         <>
-            <div className="damage vulnerabilities">
+            <div className="damage_vulnerabilities">
                 <h5>Damage Vulnerabilities:</h5>
                 <form className="damage_vulnerabilities_form">
                     {damageVulnerabilities}
                 </form>
                 <button onClick={() => adjustDamVuln(true)}>Add New Damage Vulnerability</button>
             </div>
-            <div className="damage resistances">
+            <div className="damage_resistances">
                 <h5>Damage Resistances: </h5>
                 <form className="damage_resistances_form">
                     {damageResistances}
                 </form>
                 <button onClick={() => adjustDamRes(true)}>Add New Damage Resistance</button>
             </div>
-            <div className="damage immunities">
+            <div className="damage_immunities">
                 <h5>Damage Immunities: </h5>
                 <form className="damage_immunities_form">
                     {damageImmunities}
                 </form>
                 <button onClick={() => adjustDamIm(true)}>Add New Damage Immunity</button>
             </div>
-            <div className="conditionImmunities">
+            <div className="condition_immunities">
                 <h5>Condition Immunities: </h5>
                 <form className="condition_immunities_form">
                     {conditionImmunities}

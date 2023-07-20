@@ -18,7 +18,7 @@ function CreateConditionInput({ type, handleChange, createdMonster, index, remov
     }
     return (
         <div>
-            <input type="text" name="conditional_trait_name" placeholder="ex: Poison(ed)" onChange={updateConditions} />
+            <input type="text" name="name" placeholder="ex: Poison(ed)" onChange={updateConditions} />
             {index > 0 ? <button onClick={(e) => removeCond(e, index, type)}>delete</button> : null }
             
         </div>

@@ -6,6 +6,7 @@ import Encounters from "./Encounters/Encounters"
 import SpecificMonster from "./Monsters/SpecificMonster"
 import CreateForm from "./Create/CreateForm"
 import NavBar from "./NavBar"
+import axios from 'axios'
 
 
 function App() {
@@ -44,6 +45,17 @@ function App() {
     fetch("http://localhost:3001/Users")
       .then(res => res.json())
       .then(data => setUsers(data))
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:3001/Users/1", {
+      method: 'Post',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({
+        Test: 'test'
+      })
+    },
+    )
   }, [])
 
   function selectMonster(monster) {

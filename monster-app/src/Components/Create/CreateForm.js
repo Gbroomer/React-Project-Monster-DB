@@ -5,6 +5,8 @@ import CreateStats from "./CreateStats"
 import CreateSpeed from "./CreateSpeed"
 import CreateDamageConditions from "./CreateDamageConditions"
 import CreateSenses from "./CreateSenses"
+import CreateSpecialAbilities from "./CreateSpecialAbilities"
+import axios from "axios";
 
 function CreateForm() {
     const [savingThrow, setSavingThrow] = useState({
@@ -183,9 +185,7 @@ function CreateForm() {
                 <div className='Name'>
                     <label>Name:
                         <input type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
-                            const index = 'name'
-                            const value = e.target.value
-                            handleChange(index, value)
+                            handleChange('name', e.target.value)
                         }} />
                     </label>
                 </div>
@@ -319,12 +319,39 @@ function CreateForm() {
                     <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
                 </div>
             </form>
-            <div className="Conditions">
+            <div className="conditions">
                 <CreateDamageConditions handleChange={handleChange} createdMonster={createdMonster} />
             </div>
             <div className="senses">
                 <h5>Senses: </h5>
                 <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
+            </div>
+            <div className="languages">
+                <h5>Languages: </h5>
+                <form>
+                    <input type="text" id="languages" name="languages" placeholder="Common, Elvish, telepathy 120ft." onChange={(e) => {
+                        handleChange("languages", e.target.value)
+                    }}/>
+                </form>
+            </div>
+            <div className="challenge_rating">
+                <h5>Challenge Rating: </h5>
+                <form>
+                    <input type="number" id="challenge_rating" name="challenge_rating" placeholder=".5, 5, 15" onChange={(e) => {
+                        handleChange("challenge_rating", e.target.value)
+                    }}/>
+                </form>
+            </div>
+            <div className="xp">
+                <h5>Experience: </h5>
+                <form>
+                    <input type="number" id="xp" name="xp" placeholder="50, 250, 7500" onChange={(e) => {
+                        handleChange("xp", e.target.value)
+                    }}/>
+                </form>
+            </div>
+            <div className="abilities">
+                <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster}/>
             </div>
         </div>
     )
