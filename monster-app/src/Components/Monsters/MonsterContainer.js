@@ -18,10 +18,9 @@ function MonsterContainer({ monsters, selectMonster  }) {
                     return monster.name.toLowerCase() === filter.name.toLowerCase()
                 }))
             })
-            setFilteredMonstersNames(filteredTypeMonsters)
-        } else {
-            setFilteredMonstersNames(filteredTypes)
+            console.log(filteredTypeMonsters)
         }
+    
     }
     
     const filterLetteredMonsters = (letter) => {
@@ -65,6 +64,8 @@ function MonsterContainer({ monsters, selectMonster  }) {
         name: monster.name, 
         challenge_rating: monster.challenge_rating 
     }))
+
+
 
     return (
         <div className="allMonsters">
