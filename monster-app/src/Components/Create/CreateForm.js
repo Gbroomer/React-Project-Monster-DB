@@ -3,9 +3,12 @@ import CreateSavingThrows from "./CreateSavingThrows"
 import CreateSkills from "./CreateSkills"
 import CreateStats from "./CreateStats"
 import CreateSpeed from "./CreateSpeed"
+import CreateDamageConditions from "./CreateDamageConditions"
+import CreateSenses from "./CreateSenses"
+import CreateSpecialAbilities from "./CreateSpecialAbilities"
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function CreateForm() {
+function CreateForm({ pushNewMonster }) {
     const [savingThrow, setSavingThrow] = useState({
         STR: false,
         DEX: false,
@@ -34,15 +37,22 @@ function CreateForm() {
         Stealth: false,
         Survival: false,
     })
+    const [senses, setSenses] = useState({
+        tremorsense: false,
+        darkvision: false,
+        blindsight: false,
+        truesight: false
+    })
     const [createdMonster, setCreatedMonster] = useState({
+        index: '',
         name: '',
         size: 'small',
         type: 'abberation',
         alignment: 'lawful good',
-        armor_class: {
+        armor_class: [{
             type: '',
             value: ''
-        },
+        }],
         hit_points: '',
         hit_points_roll: '',
         speed: {},
@@ -53,19 +63,20 @@ function CreateForm() {
         wisdom: '',
         charisma: '',
         proficiencies: [],
-        damage_vulnerabilities: '',
-        damage_resistances: '',
-        damage_immunities: '',
-        condition_immunities: '',
-        senses: '',
-        languages: '',
+        damage_vulnerabilities: [],
+        damage_resistances: [],
+        damage_immunities: [],
+        condition_immunities: [],
+        senses: {},
+        languages: [],
         challenge_rating: '',
         xp: '',
-        special_abilities: '',
-        actions: '',
-        legendary_actions: ''
+        special_abilities: [],
+        actions: [],
+        legendary_actions: []
     })
 
+    console.log(createdMonster)
 
     const handleChange = (index, value) => {
         setCreatedMonster((prevState) => ({
@@ -73,7 +84,6 @@ function CreateForm() {
             [index]: value,
         }))
     }
-
     const handleSavingThrow = (name, checked) => {
         setSavingThrow((prevState) => ({
             ...prevState,
@@ -91,7 +101,6 @@ function CreateForm() {
             }
         }
     }
-
     const handleProficiencyChangeST = (e) => {
 
         const { name, value } = e.target
@@ -108,7 +117,7 @@ function CreateForm() {
                     value: Number(value),
                     proficiency: {
                         index: `saving-throw-${name.toLowerCase()}`,
-                        name: `Saving-Throw: ${name.toUpperCase()}`,
+                        name: `Saving-Throw: ${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`,
                     }
                 }
                 handleChange("proficiencies", [...createdMonster.proficiencies, newProficiency])
@@ -132,6 +141,22 @@ function CreateForm() {
             }
         }
     }
+    const handleSenses = (name, checked) => {
+        setSenses((prevState) => ({
+            ...prevState,
+            [name]: checked
+        }))
+        if (!checked) {
+            const updateSenses = { ...createdMonster.senses }
+            delete updateSenses[name]
+            handleChange(`senses`, updateSenses)
+        }
+    }
+    const handleSensesChange = (e) => {
+        const { name, value } = e.target
+        handleChange("senses", { ...createdMonster.senses, [name]: value })
+    }
+
     const handleProficiencyChangeSkill = (e) => {
 
         const { name, value } = e.target
@@ -148,16 +173,13 @@ function CreateForm() {
                     value: Number(value),
                     proficiency: {
                         index: `skill-${name.toLowerCase()}`,
-                        name: `Skill: ${name.toUpperCase()}`,
+                        name: `Skill: ${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`,
                     }
                 }
                 handleChange("proficiencies", [...createdMonster.proficiencies, newProficiency])
             }
         }
     }
-    console.log(createdMonster)
-
-
     return (
         <div className="container">
             <form className="Create-Form">
@@ -330,19 +352,65 @@ function CreateForm() {
                         </li>
                     </ul>
                 </div>
+            </form>
+            <form className="speed_form">
                 <div speed="speed">
                     <CreateSpeed handleChange={handleChange} createdMonster={createdMonster} />
                 </div>
+            </form>
+            <form className="stats_form">
                 <div className="stats">
                     <CreateStats handleChange={handleChange} />
 
                 </div>
+            </form>
+            <form className="proficiencies_form">
                 <div className="proficiencies">
+                    <CreateSavingThrows handleSavingThrow={handleSavingThrow} handleProficiencyChangeST={handleProficiencyChangeST} savingThrow={savingThrow} />
+                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
                     <CreateSavingThrows handleSavingThrow={handleSavingThrow} handleProficiencyChangeST={handleProficiencyChangeST} savingThrow={savingThrow} />
                     <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
                 </div>
             </form>
-
+            <div className="conditions">
+                <CreateDamageConditions handleChange={handleChange} createdMonster={createdMonster} />
+            </div>
+            <div className="senses">
+                <h5>Senses: </h5>
+                <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
+            </div>
+            <div className="languages">
+                <h5>Languages: </h5>
+                <form>
+                    <input type="text" id="languages" name="languages" placeholder="Common, Elvish, telepathy 120ft." onChange={(e) => {
+                        handleChange("languages", e.target.value)
+                    }} />
+                </form>
+            </div>
+            <div className="challenge_rating">
+                <h5>Challenge Rating: </h5>
+                <form>
+                    <input type="number" id="challenge_rating" name="challenge_rating" placeholder=".5, 5, 15" onChange={(e) => {
+                        handleChange("challenge_rating", e.target.value)
+                    }} />
+                </form>
+            </div>
+            <div className="xp">
+                <h5>Experience: </h5>
+                <form>
+                    <input type="number" id="xp" name="xp" placeholder="50, 250, 7500" onChange={(e) => {
+                        handleChange("xp", e.target.value)
+                    }} />
+                </form>
+            </div>
+            <div className="abilities">
+                <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster} />
+            </div>
+            <div className="submit_button">
+                <br>
+                </br>
+                <button onClick={() => pushNewMonster(createdMonster)}>Submit</button>
+            </div>
         </div>
     )
 }

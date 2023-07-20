@@ -150,6 +150,7 @@ function EncounterMonsters({ monster }) {
                             <p>{action.desc}</p>
                         </div>
                     ))}
+                    <h3>Legendary Actions: </h3>
                     {legendary_actions.length > 0 && (
                         legendary_actions.map((action, index) => (
                             <div key={index}>
