@@ -1,9 +1,9 @@
 import {useState} from "react"
 import EncounterMonsters from "./EncounterMonsters"
-function EncounterCard({encounter}) {
+function EncounterCard({encounter, user, updateUser}) {
     const [generateInfo, setGenerateInfo] = useState(false)
     
-    const showMonster = encounter.monsters.map((monster) => <EncounterMonsters monster = {monster} key = {monster.index}/>)
+    const showMonster = encounter.monsters.map((monster) => <EncounterMonsters encounter={encounter} monster = {monster} key = {monster.index} user={user} updateUser={updateUser}/>)
 
     function renderInfo() {
         if(encounter.monsters.length > 0) {

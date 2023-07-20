@@ -2,7 +2,7 @@ import { useState } from "react"
 import EncounterList from "./EncounterList"
 
 
-function Encounters({ user, updateUser }) {
+function Encounters({ user, updateUser, encounters }) {
     const [nameEncounter, setNameEncounter] = useState('')
     function newEncounter(e) {
         e.preventDefault()
@@ -36,7 +36,7 @@ function Encounters({ user, updateUser }) {
                 <button className="new_encounter" onClick={(e) => newEncounter(e)}>Create Encounter</button>
 
             </form>
-            <EncounterList encounters={user.encounters} />
+            <EncounterList encounters={encounters} user={user} updateUser={updateUser} />
         </div>
     )
 }

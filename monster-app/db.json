@@ -7,39 +7,116 @@
       "encounters": [
         {
           "title": "Aboleth Attack",
-          "monsters": []
+          "monsters": [
+            {
+              "index": "goblin",
+              "name": "Goblin",
+              "size": "Small",
+              "type": "humanoid",
+              "subtype": "goblinoid",
+              "alignment": "neutral evil",
+              "armor_class": [
+                {
+                  "type": "armor",
+                  "value": 15,
+                  "armor": [
+                    {
+                      "index": "leather-armor",
+                      "name": "Leather Armor",
+                      "url": "/api/equipment/leather-armor"
+                    },
+                    {
+                      "index": "shield",
+                      "name": "Shield",
+                      "url": "/api/equipment/shield"
+                    }
+                  ]
+                }
+              ],
+              "hit_points": 7,
+              "hit_dice": "2d6",
+              "hit_points_roll": "2d6",
+              "speed": {
+                "walk": "30 ft."
+              },
+              "strength": 8,
+              "dexterity": 14,
+              "constitution": 10,
+              "intelligence": 10,
+              "wisdom": 8,
+              "charisma": 8,
+              "proficiencies": [
+                {
+                  "value": 6,
+                  "proficiency": {
+                    "index": "skill-stealth",
+                    "name": "Skill: Stealth",
+                    "url": "/api/proficiencies/skill-stealth"
+                  }
+                }
+              ],
+              "damage_vulnerabilities": [],
+              "damage_resistances": [],
+              "damage_immunities": [],
+              "condition_immunities": [],
+              "senses": {
+                "darkvision": "60 ft.",
+                "passive_perception": 9
+              },
+              "languages": "Common, Goblin",
+              "challenge_rating": 0.25,
+              "xp": 50,
+              "special_abilities": [
+                {
+                  "name": "Nimble Escape",
+                  "desc": "The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+                }
+              ],
+              "actions": [
+                {
+                  "name": "Scimitar",
+                  "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage.",
+                  "attack_bonus": 4,
+                  "damage": [
+                    {
+                      "damage_type": {
+                        "index": "slashing",
+                        "name": "Slashing",
+                        "url": "/api/damage-types/slashing"
+                      },
+                      "damage_dice": "1d6+2"
+                    }
+                  ],
+                  "actions": []
+                },
+                {
+                  "name": "Shortbow",
+                  "desc": "Ranged Weapon Attack: +4 to hit, range 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage.",
+                  "attack_bonus": 4,
+                  "damage": [
+                    {
+                      "damage_type": {
+                        "index": "piercing",
+                        "name": "Piercing",
+                        "url": "/api/damage-types/piercing"
+                      },
+                      "damage_dice": "1d6+2"
+                    }
+                  ],
+                  "actions": []
+                }
+              ],
+              "image": "/api/images/monsters/goblin.png",
+              "url": "/api/monsters/goblin",
+              "legendary_actions": []
+            }
+          ]
         },
         {
-          "title": "Goblin Brawl",
-          "monsters": []
-        },
-        {
-          "title": "goblin fight",
-          "monsters": []
-        },
-        {
-          "title": "goblin fig",
-          "monsters": []
-        },
-        {
-          "title": "goblin fart",
-          "monsters": []
-        },
-        {
-          "title": "goblin shart",
-          "monsters": []
-        },
-        {
-          "title": "Goblin Gobblen them Beans",
+          "title": "Goblin Fight!",
           "monsters": []
         }
       ]
-    },
-    {
-      "name": "GrantTest",
-      "password": "testtest",
-      "id": 2,
-      "encounters": []
     }
   ],
   "Monsters": [
@@ -664,6 +741,133 @@
       "actions": [],
       "legendary_actions": [],
       "id": 6
+    },
+    {
+      "index": "antonio's-ex-wife",
+      "name": "Antonio's Ex Wife",
+      "size": "small",
+      "type": "Monstrosity",
+      "alignment": "chaotic neutral",
+      "armor_class": [
+        {
+          "type": "Natural",
+          "value": "12"
+        }
+      ],
+      "hit_points": "55",
+      "hit_points_roll": "10d10+5",
+      "speed": {
+        "walk": "30 ft.",
+        "swim": "20 ft.",
+        "climb": "45 ft.",
+        "fly": "60 ft."
+      },
+      "strength": "12",
+      "dexterity": "14",
+      "constitution": "13",
+      "intelligence": "7",
+      "wisdom": "10",
+      "charisma": "6",
+      "proficiencies": [
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "saving-throw-dex",
+            "name": "Saving-Throw: Dex"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "saving-throw-con",
+            "name": "Saving-Throw: Con"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "skill-acrobatics",
+            "name": "Skill: Acrobatics"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "skill-deception",
+            "name": "Skill: Deception"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "skill-intimidation",
+            "name": "Skill: Intimidation"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "skill-sleight_of_hand",
+            "name": "Skill: Sleight_of_hand"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "skill-stealth",
+            "name": "Skill: Stealth"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "skill-survival",
+            "name": "Skill: Survival"
+          }
+        }
+      ],
+      "damage_vulnerabilities": [
+        "Psychic"
+      ],
+      "damage_resistances": [
+        "Antonio's Lawyer "
+      ],
+      "damage_immunities": [],
+      "condition_immunities": [
+        {
+          "index": "Morality"
+        }
+      ],
+      "senses": {
+        "passive_perception": "12",
+        "tremorsense": "60"
+      },
+      "languages": "Common, Abyssal",
+      "challenge_rating": "3",
+      "xp": "750",
+      "special_abilities": [
+        {
+          "name": "Kidnap",
+          "desc": "The Ex has the ability to grapple up to two targets as an action using her Dexterity(stealth) instead of Strength. A target must succeed on a contested Wisdom(Perception) check to evade the grapple."
+        },
+        {
+          "name": "Talk Back",
+          "desc": "The Ex has the ability to cast Vicious Mockery at a creature within 30ft that she can perceive through sight or tremorsense when that creature performs any action. Vicious Mockery resolves as normal. "
+        }
+      ],
+      "actions": [
+        {
+          "name": "Claw",
+          "desc": "Melee Weapon Attack. Range: 5ft. +5 to hit. 4 (1d4+2) slashing damage. On a successful hit, a target must succeed on a DC 13 Constitution saving throw or be poisoned for 1 minute."
+        }
+      ],
+      "legendary_actions": [
+        {
+          "name": "",
+          "desc": ""
+        }
+      ],
+      "id": 7
     }
   ]
 }

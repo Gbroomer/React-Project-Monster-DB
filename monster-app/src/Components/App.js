@@ -17,6 +17,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [user, setUser] = useState(null)
   const [selectedMonster, setSelectedMonster] = useState([])
+  const [encounters, setEncounters] = useState(false)
 
   useEffect(() => {
     if (monsters.length === 0) {
@@ -80,6 +81,8 @@ function App() {
     if (userExists) {
       setUser(userExists)
       setUserLogged(true)
+      setEncounters(userExists.encounters)
+      console.log(userExists.encounters)
     } else {
       alert('Incorrect Username or Password. Information is case sensitive. Check your cap locks.')
     }
@@ -101,6 +104,7 @@ function App() {
         .then(newUser => {
           setUser(newUser)
           setUserLogged(true)
+          setEncounters(newUser.encouters)
           console.log(newUser)
         })
         .catch(error => {
@@ -141,8 +145,8 @@ function App() {
   }
   function updateUser(updatedUser) {
     setUser(updatedUser)
+    setEncounters(updatedUser.encounters)
   }
-
 
   console.log(monsters)
   return (
@@ -150,8 +154,8 @@ function App() {
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
       <Routes>
-        <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} userLogged = {userLogged} />} />
-        <Route path="/" element={userLogged ? <Encounters user={user} updateUser={updateUser}/> : <Home />} />
+        <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} encounters = {encounters} user = {user} updateUser = {updateUser}/>} />
+        <Route path="/" element={userLogged ? <Encounters user={user} updateUser={updateUser} encounters = {encounters} /> : <Home />} />
         <Route path="/Monsters" element={<MonsterContainer monsters={monsters} selectMonster={selectMonster} />} />
         <Route path="Create-Monster" element={<CreateForm pushNewMonster={pushNewMonster} />} />
       </Routes>

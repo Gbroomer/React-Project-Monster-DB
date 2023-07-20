@@ -1,17 +1,14 @@
 import { useState } from "react"
 
-function EncounterMonsters({ monster }) {
+function EncounterMonsters({ monster, user, updateUser, encounter }) {
     const [showMonster, setShowMonster] = useState(false)
-    const [editMonster, setEditMonster] = useState(monster)
     const {
-        index,
         name,
         size,
         type,
         alignment,
         armor_class,
         hit_points,
-        hit_dice,
         hit_points_roll,
         speed,
         strength,
@@ -31,8 +28,6 @@ function EncounterMonsters({ monster }) {
         xp,
         special_abilities,
         actions,
-        image,
-        url,
         legendary_actions
     } = monster;
 
@@ -55,11 +50,35 @@ function EncounterMonsters({ monster }) {
     function reveal() {
         setShowMonster(!showMonster)
     }
+    function removeMonster() {
+        let encounterIndex = user.encounters.findIndex((encount) => encount === encounter)
+        console.log(encounterIndex)
+        const updatedEncounters = [...user.encounters]
+        let encounterMonsters = updatedEncounters[encounterIndex].monsters
+        const updatedMonsters = encounterMonsters.filter((monst) => monst !== monster)
+        
+        updatedEncounters[encounterIndex].monsters = updatedMonsters
+
+        let updatedUser = {
+            ...user, 
+            encounters: updatedEncounters
+        }
+        console.log(updatedUser)
+        fetch(`http://localhost:3001/Users/${user.id}`, {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/JSON', Accept: 'application/JSON' },
+                body: JSON.stringify(updatedUser)
+            }).then(res => res.json())
+                .then(updatedUser => {
+                    updateUser(updatedUser)
+                })
+    }
     return (
         <div className="monsterCard">
             <h3 onClick={reveal} style={{ cursor: 'pointer' }} >{name}</h3>
             {showMonster && (
                 <>
+
                     <p>{size} {type} {alignment}</p>
                     <h5>Armor Class: {armor_class[0].value} ({armor_class[0].type})</h5>
                     <h5>Hit Points: {hit_points} ({hit_points_roll})</h5>
@@ -95,29 +114,29 @@ function EncounterMonsters({ monster }) {
                         <div>
                             <h4>Damage Vulnerabilities:</h4>
                             {damage_vulnerabilities.map((vulnerability, index) => (
-                                <p key={index}>{vulnerability.index}</p>
+                                <p key={index}>{vulnerability}</p>
                             ))}
                         </div>
                     )}
                     {damage_resistances.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Damage Resistances:</h4>
                             {damage_resistances.map((resistance, index) => (
-                                <p key={index}>{resistance.index}</p>
+                                <p key={index}>{resistance}</p>
                             ))}
                         </div>
                     )}
                     {damage_immunities.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Damage Immunities:</h4>
                             {damage_immunities.map((immunity, index) => (
-                                <p key={index}>{immunity.index}</p>
+                                <p key={index}>{immunity}</p>
                             ))}
                         </div>
                     )}
                     {condition_immunities.length > 0 && (
                         <div>
-                            <h4>Damage Vulnerabilities:</h4>
+                            <h4>Condition Immunities:</h4>
                             {condition_immunities.map((immunity, index) => (
                                 <p key={index}>{immunity.index}</p>
                             ))}
@@ -150,7 +169,9 @@ function EncounterMonsters({ monster }) {
                             <p>{action.desc}</p>
                         </div>
                     ))}
-                    <h3>Legendary Actions: </h3>
+                    {legendary_actions.lenth > 0 && (
+                        <h3>Legendary Actions: </h3>
+                    )}
                     {legendary_actions.length > 0 && (
                         legendary_actions.map((action, index) => (
                             <div key={index}>
@@ -159,7 +180,7 @@ function EncounterMonsters({ monster }) {
                             </div>
                         ))
                     )}
-                    <button className = "remove_monster">Remove from Encounter</button> 
+                    <button className="remove_monster" onClick={removeMonster}>Remove from Encounter</button>
                 </>
             )}
         </div>
