@@ -159,24 +159,38 @@ function CreateForm() {
 
 
     return (
-        <div>
+        <div className="container">
             <form className="Create-Form">
-                <div className='Name'>
-                    <label>Name:
-                        <input required type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
-                            const index = 'name'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }} />
+                <div className="mb-3">
+                    <label className="form-label">Name:
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Monster"
+                            onChange={(e) => {
+                                const index = "name";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        />
                     </label>
                 </div>
-                <div className="size">
-                    <label>Size:
-                        <select required id="size" name="size" onChange={(e) => {
-                            const index = 'size'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Size:
+                        <select
+                            required
+                            className="form-select"
+                            id="size"
+                            name="size"
+                            onChange={(e) => {
+                                const index = "size";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="Small">Small</option>
                             <option value="Medium">Medium</option>
                             <option value="Large">Large</option>
@@ -184,13 +198,18 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
-                <div className="Type">
-                    <label>Type:
-                        <select id="Type" name="Type" onChange={(e) => {
-                            const index = 'type'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Type:
+                        <select
+                            className="form-select"
+                            id="Type"
+                            name="Type"
+                            onChange={(e) => {
+                                const index = "type";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="aberration">Aberration</option>
                             <option value="beast">Beast</option>
                             <option value="celestial">Celestial</option>
@@ -208,13 +227,18 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
-                <div className="alignment">
-                    <label>Alignment:
-                        <select id="alignment" name="alignment" onChange={(e) => {
-                            const index = 'alignment'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Alignment:
+                        <select
+                            className="form-select"
+                            id="alignment"
+                            name="alignment"
+                            onChange={(e) => {
+                                const index = "alignment";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="lawful good">Lawful Good</option>
                             <option value="neutral good">Neutral Good</option>
                             <option value="chaotic good">Chaotic Good</option>
@@ -227,48 +251,81 @@ function CreateForm() {
                         </select>
                     </label>
                 </div>
-                <div className="armor_class">
-                    <p>Armor Class:</p>
-                    <label>Number:
-                        <input required type="number" id="armor-class" name="AC" placeholder="10" onChange={(e) => {
-                            const index = 'armor_class'
-                            const value = {
-                                type: createdMonster.armor_class.type,
-                                value: e.target.value
-                            }
-                            handleChange(index, value)
-                        }} />
-                    </label>
-                    <label>Type:
-                        <input required type="text" id="armor-class-type" name="AC" placeholder="Natural" onChange={(e) => {
-                            const index = 'armor_class'
-                            const value = {
-                                type: e.target.value,
-                                value: createdMonster.armor_class.value
-                            }
-                            handleChange(index, value)
-                        }} />
+                <div className="mb-3">
+                    <label className="form-label">Armor Class - Number:
+                        <input
+                            required
+                            type="number"
+                            className="form-control"
+                            id="armor-class"
+                            name="AC"
+                            //placeholder="10"
+                            onChange={(e) => {
+                                const index = "armor_class";
+                                const value = {
+                                    type: createdMonster.armor_class.type,
+                                    value: e.target.value
+                                };
+                                handleChange(index, value);
+                            }}
+                        />
                     </label>
                 </div>
-                <div className="hit_points">
+                <div className="mb-3">
+                    <label className="form-label">Armor Class - Type:
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            id="armor-class-type"
+                            name="AC"
+                            //placeholder="Natural"
+                            onChange={(e) => {
+                                const index = "armor_class";
+                                const value = {
+                                    type: e.target.value,
+                                    value: createdMonster.armor_class.value
+                                };
+                                handleChange(index, value);
+                            }}
+                        />
+                    </label>
+                </div>
+                <div className="mb-3">
                     <h5>Hit Points:</h5>
                     <ul>
                         <li>
-                            <label>Hit Point Total:
-                                <input required type="number" id="hit_points" name="HP" placeholder="10" onChange={(e) => {
-                                    const index = 'hit_points'
-                                    const value = e.target.value
-                                    handleChange(index, value)
-                                }} />
+                            <label className="form-label">Hit Point Total:
+                                <input
+                                    required
+                                    type="number"
+                                    className="form-control"
+                                    id="hit_points"
+                                    name="HP"
+                                    //placeholder="10"
+                                    onChange={(e) => {
+                                        const index = "hit_points";
+                                        const value = e.target.value;
+                                        handleChange(index, value);
+                                    }}
+                                />
                             </label>
                         </li>
                         <li>
-                            <label>Hit Points Dice Roll:
-                                <input required type="text" id="hit_points_roll" name="HP Dice" placeholder="ex: 1d10+4" onChange={(e) => {
-                                    const index = 'hit_points_roll'
-                                    const value = e.target.value
-                                    handleChange(index, value)
-                                }} />
+                            <label className="form-label">Hit Points Dice Roll:
+                                <input
+                                    required
+                                    type="text"
+                                    className="form-control"
+                                    id="hit_points_roll"
+                                    name="HP Dice"
+                                    //placeholder="ex: 1d10+4"
+                                    onChange={(e) => {
+                                        const index = "hit_points_roll";
+                                        const value = e.target.value;
+                                        handleChange(index, value);
+                                    }}
+                                />
                             </label>
                         </li>
                     </ul>
@@ -277,12 +334,12 @@ function CreateForm() {
                     <CreateSpeed handleChange={handleChange} createdMonster={createdMonster} />
                 </div>
                 <div className="stats">
-                    <CreateStats handleChange = { handleChange } />
-                    
+                    <CreateStats handleChange={handleChange} />
+
                 </div>
                 <div className="proficiencies">
-                    <CreateSavingThrows handleSavingThrow = { handleSavingThrow } handleProficiencyChangeST = { handleProficiencyChangeST } savingThrow = { savingThrow } />
-                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill = { skill } />
+                    <CreateSavingThrows handleSavingThrow={handleSavingThrow} handleProficiencyChangeST={handleProficiencyChangeST} savingThrow={savingThrow} />
+                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
                 </div>
             </form>
 
