@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { NavLink } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 function NavBar({ userLogin, userSignUp, userLogged, user }) {
@@ -8,33 +9,34 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     const [homeClick, setHomeClick] = useState(true)
     const [monsterClick, setMonsterClick] = useState(false)
     const [createClick, setCreateClick] = useState(false)
+    const [alertVisible, setAlertVisible] = useState(false)
 
 
-    const linkStyles = {
-        background: "grey",
-        cursor: "pointer",
-        borderRadius: "50px",
-        margin: "25px 20px",
-        marginTop: "75px",
-        color: "White",
-        padding: "5px",
-        fontFamily: "Papyrus",
-        fontSize: "25px",
-        fontWeight: "bold",
-        textDecoration: 'none'
-    }
-    const linkStylesClicked = {
-        background: "red",
-        cursor: "pointer",
-        borderRadius: "50px",
-        margin: " 0px 20px",
-        width: "75px",
-        color: "White",
-        fontFamily: "Papyrus",
-        fontSize: "25px",
-        fontWeight: "bold",
-        textDecoration: "none"
-    }
+    // const linkStyles = {
+    //     background: "grey",
+    //     cursor: "pointer",
+    //     borderRadius: "50px",
+    //     margin: "25px 20px",
+    //     marginTop: "75px",
+    //     color: "White",
+    //     padding: "5px",
+    //     fontFamily: "Papyrus",
+    //     fontSize: "25px",
+    //     fontWeight: "bold",
+    //     textDecoration: 'none'
+    // }
+    // const linkStylesClicked = {
+    //     background: "red",
+    //     cursor: "pointer",
+    //     borderRadius: "50px",
+    //     margin: " 0px 20px",
+    //     width: "75px",
+    //     color: "White",
+    //     fontFamily: "Papyrus",
+    //     fontSize: "25px",
+    //     fontWeight: "bold",
+    //     textDecoration: "none"
+    // }
 
     const usernameLogin = useRef()
     const userPassLogin = useRef()
@@ -54,7 +56,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
                 userLogin(user)
             }
         } else {
-            alert('Please Input All Fields')
+            setAlertVisible(true);
         }
 
         e.target.reset()
@@ -69,7 +71,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         if (!userLogged) {
             return (
                 <div>
-                    <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
+                    <form id="Login" className="User-Login bg-dark" onSubmit={(e) => handleLogin(e)}>
                         <div>
                             <h4>{loginType ? "Sign-Up:" : "Login:"}</h4>
                         </div>
@@ -115,42 +117,58 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
     }
 
     return (
-        <div>
-            <NavLink
-                to="/"
-                style={homeClick ? linkStylesClicked : linkStyles}
-                onClick={navHome}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Home
-            </NavLink>
-            <NavLink
-                to="/Monsters"
-                style={monsterClick ? linkStylesClicked : linkStyles}
-                onClick={navMonster}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Monsters
-            </NavLink>
-            <NavLink
-                to="/Create-Monster"
-                style={createClick ? linkStylesClicked : linkStyles}
-                onClick={navCreate}
-                activestyle={{
-                    background: "lightred"
-                }}
-            >
-                Create
-            </NavLink>
-            <div>
-                <CheckLogged />
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid d-flex justify-content-between">
+                <div>
+                    {alertVisible && (
+                        <div className="alert alert-danger" role="alert">
+                            Please Input All Fields
+                        </div>
+                    )}
+                    <CheckLogged />
+                </div>
+
+                <div>
+                    <NavLink className="navbar-brand" to="/" onClick={navHome}>
+
+                    </NavLink>
+                </div>
+
+                <ul className="navbar-nav mx-auto">
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-primary ${homeClick ? "active" : ""
+                                }`}
+                            to="/"
+                            onClick={navHome}
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-success ${monsterClick ? "active" : ""
+                                }`}
+                            to="/Monsters"
+                            onClick={navMonster}
+                        >
+                            Monsters
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            className={`nav-link btn btn-danger ${createClick ? "active" : ""
+                                }`}
+                            to="/Create-Monster"
+                            onClick={navCreate}
+                        >
+                            Create
+                        </NavLink>
+                    </li>
+                </ul>
             </div>
-        </div>
-    )
+        </nav>
+    );
 }
 
-export default NavBar
+export default NavBar;

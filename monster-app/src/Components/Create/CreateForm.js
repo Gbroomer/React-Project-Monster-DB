@@ -6,6 +6,7 @@ import CreateSpeed from "./CreateSpeed"
 import CreateDamageConditions from "./CreateDamageConditions"
 import CreateSenses from "./CreateSenses"
 import CreateSpecialAbilities from "./CreateSpecialAbilities"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function CreateForm({ pushNewMonster }) {
     const [savingThrow, setSavingThrow] = useState({
@@ -180,27 +181,39 @@ function CreateForm({ pushNewMonster }) {
         }
     }
     return (
-        <div>
-            <form className="name_form">
-                <div className='Name'>
-                    <label>Name:
-                        <input type="text" id="name" name="name" placeholder="Monster" onChange={(e) => {
-                            handleChange('name', e.target.value)
-                            const indexify = e.target.value.toLowerCase().replace(/\s+/g, '-')
-                            //replace the ' ' spaces with '-' in indexify (if they exist)
-                            handleChange('index', indexify)
-                        }} />
+        <div className="container">
+            <form className="Create-Form">
+                <div className="mb-3">
+                    <label className="form-label">Name:
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Monster"
+                            onChange={(e) => {
+                                handleChange('name', e.target.value)
+                                const indexify = e.target.value.toLowerCase().replace(/\s+/g, '-')
+                                handleChange('index', indexify)
+                            }}
+                        />
                     </label>
                 </div>
             </form>
             <form className="size_form">
-                <div className="size">
-                    <label>Size:
-                        <select id="size" name="size" onChange={(e) => {
-                            const index = 'size'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Size:
+                        <select
+                            className="form-select"
+                            id="size"
+                            name="size"
+                            onChange={(e) => {
+                                const index = "size";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="Small">Small</option>
                             <option value="Medium">Medium</option>
                             <option value="Large">Large</option>
@@ -210,13 +223,18 @@ function CreateForm({ pushNewMonster }) {
                 </div>
             </form>
             <form className="type_form">
-                <div className="Type">
-                    <label>Type:
-                        <select id="Type" name="Type" onChange={(e) => {
-                            const index = 'type'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Type:
+                        <select
+                            className="form-select"
+                            id="Type"
+                            name="Type"
+                            onChange={(e) => {
+                                const index = "type";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="aberration">Aberration</option>
                             <option value="beast">Beast</option>
                             <option value="celestial">Celestial</option>
@@ -236,13 +254,18 @@ function CreateForm({ pushNewMonster }) {
                 </div>
             </form>
             <form className="alignment_form">
-                <div className="alignment">
-                    <label>Alignment:
-                        <select id="alignment" name="alignment" onChange={(e) => {
-                            const index = 'alignment'
-                            const value = e.target.value
-                            handleChange(index, value)
-                        }}>
+                <div className="mb-3">
+                    <label className="form-label">Alignment:
+                        <select
+                            className="form-select"
+                            id="alignment"
+                            name="alignment"
+                            onChange={(e) => {
+                                const index = "alignment";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        >
                             <option value="lawful good">Lawful Good</option>
                             <option value="neutral good">Neutral Good</option>
                             <option value="chaotic good">Chaotic Good</option>
@@ -257,50 +280,82 @@ function CreateForm({ pushNewMonster }) {
                 </div>
             </form>
             <form className="ac_form">
-                <div className="armor_class">
-                    <p>Armor Class:</p>
-                    <label>Number:
-                        <input type="number" id="armor-class" name="AC" placeholder="10" onChange={(e) => {
-                            const index = 'armor_class'
-                            const value = [{
-                                type: createdMonster.armor_class[0].type,
-                                value: e.target.value
-                            }]
-                            handleChange(index, value)
-                        }} />
+                <div className="mb-3">
+                    <label className="form-label">Armor Class - Number:
+                        <input
+                           
+                            type="number"
+                            className="form-control"
+                            id="armor-class"
+                            name="AC"
+                            placeholder="10"
+                            onChange={(e) => {
+                                const index = "armor_class";
+                                const value = [{
+                                    type: createdMonster.armor_class[0].type,
+                                    value: e.target.value
+                                }];
+                                handleChange(index, value);
+                            }}
+                        />
                     </label>
-                    <label>Type:
-                        <input type="text" id="armor-class-type" name="AC" placeholder="Natural" onChange={(e) => {
-                            const index = 'armor_class'
-                            const value = [{
-                                type: e.target.value,
-                                value: createdMonster.armor_class[0].value
-                            }]
-                            handleChange(index, value)
-                        }} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Armor Class - Type:
+                        <input
+                           
+                            type="text"
+                            className="form-control"
+                            id="armor-class-type"
+                            name="AC"
+                            placeholder="Natural"
+                            onChange={(e) => {
+                                const index = "armor_class";
+                                const value = [{
+                                    type: e.target.value,
+                                    value: createdMonster.armor_class[0].value
+                                }];
+                                handleChange(index, value);
+                            }}
+                        />
                     </label>
                 </div>
             </form>
             <form className="hp_form">
-                <div className="hit_points">
+                <div className="mb-3">
                     <h5>Hit Points:</h5>
                     <ul>
                         <li>
-                            <label>Hit Point Total:
-                                <input type="number" id="hit_points" name="HP" placeholder="10" onChange={(e) => {
-                                    const index = 'hit_points'
-                                    const value = e.target.value
-                                    handleChange(index, value)
-                                }} />
+                            <label className="form-label">Hit Point Total:
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="hit_points"
+                                    name="HP"
+                                    placeholder="10"
+                                    onChange={(e) => {
+                                        const index = "hit_points";
+                                        const value = e.target.value;
+                                        handleChange(index, value);
+                                    }}
+                                />
                             </label>
                         </li>
                         <li>
-                            <label>Hit Points Dice Roll:
-                                <input type="text" id="hit_points_roll" name="HP Dice" placeholder="ex: 1d10+4" onChange={(e) => {
-                                    const index = 'hit_points_roll'
-                                    const value = e.target.value
-                                    handleChange(index, value)
-                                }} />
+                            <label className="form-label">Hit Points Dice Roll:
+                                <input
+                                   
+                                    type="text"
+                                    className="form-control"
+                                    id="hit_points_roll"
+                                    name="HP Dice"
+                                    placeholder="ex: 1d10+4"
+                                    onChange={(e) => {
+                                        const index = "hit_points_roll";
+                                        const value = e.target.value;
+                                        handleChange(index, value);
+                                    }}
+                                />
                             </label>
                         </li>
                     </ul>
