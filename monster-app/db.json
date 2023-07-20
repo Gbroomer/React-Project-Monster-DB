@@ -221,13 +221,490 @@
           ]
         }
       ]
-    },
-    {
-      "name": "GrantTest",
-      "password": "testtest",
-      "id": 2,
-      "encounters": []
     }
   ],
-  "Monsters": []
+  "Monsters": [
+    {
+      "index": "tonkotsu-ramen",
+      "name": "Tonkotsu Ramen",
+      "size": "Medium",
+      "type": "beast",
+      "alignment": "neutral good",
+      "armor_class": [
+        {
+          "type": "15",
+          "value": "15"
+        }
+      ],
+      "hit_points": "15",
+      "hit_points_roll": "15",
+      "speed": {
+        "walk": "15 ft.",
+        "swim": "15 ft.",
+        "climb": "15 ft.",
+        "fly": "15 ft."
+      },
+      "strength": "15",
+      "dexterity": "15",
+      "constitution": "15",
+      "intelligence": "15",
+      "wisdom": "15",
+      "charisma": "15",
+      "proficiencies": [
+        {
+          "value": 1,
+          "proficiency": {
+            "index": "saving-throw-str",
+            "name": "Saving-Throw: Str"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "saving-throw-dex",
+            "name": "Saving-Throw: Dex"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "saving-throw-con",
+            "name": "Saving-Throw: Con"
+          }
+        },
+        {
+          "value": 3,
+          "proficiency": {
+            "index": "saving-throw-int",
+            "name": "Saving-Throw: Int"
+          }
+        },
+        {
+          "value": 4,
+          "proficiency": {
+            "index": "saving-throw-wis",
+            "name": "Saving-Throw: Wis"
+          }
+        },
+        {
+          "value": 6,
+          "proficiency": {
+            "index": "saving-throw-cha",
+            "name": "Saving-Throw: Cha"
+          }
+        },
+        {
+          "value": 1,
+          "proficiency": {
+            "index": "skill-acrobatics",
+            "name": "Skill: Acrobatics"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "skill-animal_handling",
+            "name": "Skill: Animal_handling"
+          }
+        },
+        {
+          "value": 3,
+          "proficiency": {
+            "index": "skill-arcana",
+            "name": "Skill: Arcana"
+          }
+        },
+        {
+          "value": 4,
+          "proficiency": {
+            "index": "skill-athletics",
+            "name": "Skill: Athletics"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "skill-deception",
+            "name": "Skill: Deception"
+          }
+        },
+        {
+          "value": 6,
+          "proficiency": {
+            "index": "skill-history",
+            "name": "Skill: History"
+          }
+        },
+        {
+          "value": 7,
+          "proficiency": {
+            "index": "skill-insight",
+            "name": "Skill: Insight"
+          }
+        },
+        {
+          "value": 8,
+          "proficiency": {
+            "index": "skill-intimidation",
+            "name": "Skill: Intimidation"
+          }
+        },
+        {
+          "value": 9,
+          "proficiency": {
+            "index": "skill-investigation",
+            "name": "Skill: Investigation"
+          }
+        },
+        {
+          "value": 10,
+          "proficiency": {
+            "index": "skill-medicine",
+            "name": "Skill: Medicine"
+          }
+        },
+        {
+          "value": 11,
+          "proficiency": {
+            "index": "skill-nature",
+            "name": "Skill: Nature"
+          }
+        },
+        {
+          "value": 12,
+          "proficiency": {
+            "index": "skill-perception",
+            "name": "Skill: Perception"
+          }
+        },
+        {
+          "value": 13,
+          "proficiency": {
+            "index": "skill-performance",
+            "name": "Skill: Performance"
+          }
+        },
+        {
+          "value": 14,
+          "proficiency": {
+            "index": "skill-persuasion",
+            "name": "Skill: Persuasion"
+          }
+        },
+        {
+          "value": 15,
+          "proficiency": {
+            "index": "skill-religion",
+            "name": "Skill: Religion"
+          }
+        },
+        {
+          "value": 16,
+          "proficiency": {
+            "index": "skill-sleight_of_hand",
+            "name": "Skill: Sleight_of_hand"
+          }
+        },
+        {
+          "value": 17,
+          "proficiency": {
+            "index": "skill-stealth",
+            "name": "Skill: Stealth"
+          }
+        },
+        {
+          "value": 18,
+          "proficiency": {
+            "index": "skill-survival",
+            "name": "Skill: Survival"
+          }
+        }
+      ],
+      "damage_vulnerabilities": [
+        "Poison"
+      ],
+      "damage_resistances": [
+        "Lightning"
+      ],
+      "damage_immunities": [
+        "Fire",
+        "Bludgeoning"
+      ],
+      "condition_immunities": [
+        {
+          "index": "Poisoned"
+        }
+      ],
+      "senses": {
+        "passive_perception": "15",
+        "blindsight": "60",
+        "tremorsense": "45",
+        "darkvision": "120",
+        "truesight": "50"
+      },
+      "languages": "Common, Elvish, Dwarven",
+      "challenge_rating": "5",
+      "xp": "750",
+      "special_abilities": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "actions": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "legendary_actions": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "index": "tonkotsu-ramen",
+      "name": "Tonkotsu Ramen",
+      "size": "Medium",
+      "type": "beast",
+      "alignment": "neutral good",
+      "armor_class": [
+        {
+          "type": "15",
+          "value": "15"
+        }
+      ],
+      "hit_points": "15",
+      "hit_points_roll": "15",
+      "speed": {
+        "walk": "15 ft.",
+        "swim": "15 ft.",
+        "climb": "15 ft.",
+        "fly": "15 ft."
+      },
+      "strength": "15",
+      "dexterity": "15",
+      "constitution": "15",
+      "intelligence": "15",
+      "wisdom": "15",
+      "charisma": "15",
+      "proficiencies": [
+        {
+          "value": 1,
+          "proficiency": {
+            "index": "saving-throw-str",
+            "name": "Saving-Throw: Str"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "saving-throw-dex",
+            "name": "Saving-Throw: Dex"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "saving-throw-con",
+            "name": "Saving-Throw: Con"
+          }
+        },
+        {
+          "value": 3,
+          "proficiency": {
+            "index": "saving-throw-int",
+            "name": "Saving-Throw: Int"
+          }
+        },
+        {
+          "value": 4,
+          "proficiency": {
+            "index": "saving-throw-wis",
+            "name": "Saving-Throw: Wis"
+          }
+        },
+        {
+          "value": 6,
+          "proficiency": {
+            "index": "saving-throw-cha",
+            "name": "Saving-Throw: Cha"
+          }
+        },
+        {
+          "value": 1,
+          "proficiency": {
+            "index": "skill-acrobatics",
+            "name": "Skill: Acrobatics"
+          }
+        },
+        {
+          "value": 2,
+          "proficiency": {
+            "index": "skill-animal_handling",
+            "name": "Skill: Animal_handling"
+          }
+        },
+        {
+          "value": 3,
+          "proficiency": {
+            "index": "skill-arcana",
+            "name": "Skill: Arcana"
+          }
+        },
+        {
+          "value": 4,
+          "proficiency": {
+            "index": "skill-athletics",
+            "name": "Skill: Athletics"
+          }
+        },
+        {
+          "value": 5,
+          "proficiency": {
+            "index": "skill-deception",
+            "name": "Skill: Deception"
+          }
+        },
+        {
+          "value": 6,
+          "proficiency": {
+            "index": "skill-history",
+            "name": "Skill: History"
+          }
+        },
+        {
+          "value": 7,
+          "proficiency": {
+            "index": "skill-insight",
+            "name": "Skill: Insight"
+          }
+        },
+        {
+          "value": 8,
+          "proficiency": {
+            "index": "skill-intimidation",
+            "name": "Skill: Intimidation"
+          }
+        },
+        {
+          "value": 9,
+          "proficiency": {
+            "index": "skill-investigation",
+            "name": "Skill: Investigation"
+          }
+        },
+        {
+          "value": 10,
+          "proficiency": {
+            "index": "skill-medicine",
+            "name": "Skill: Medicine"
+          }
+        },
+        {
+          "value": 11,
+          "proficiency": {
+            "index": "skill-nature",
+            "name": "Skill: Nature"
+          }
+        },
+        {
+          "value": 12,
+          "proficiency": {
+            "index": "skill-perception",
+            "name": "Skill: Perception"
+          }
+        },
+        {
+          "value": 13,
+          "proficiency": {
+            "index": "skill-performance",
+            "name": "Skill: Performance"
+          }
+        },
+        {
+          "value": 14,
+          "proficiency": {
+            "index": "skill-persuasion",
+            "name": "Skill: Persuasion"
+          }
+        },
+        {
+          "value": 15,
+          "proficiency": {
+            "index": "skill-religion",
+            "name": "Skill: Religion"
+          }
+        },
+        {
+          "value": 16,
+          "proficiency": {
+            "index": "skill-sleight_of_hand",
+            "name": "Skill: Sleight_of_hand"
+          }
+        },
+        {
+          "value": 17,
+          "proficiency": {
+            "index": "skill-stealth",
+            "name": "Skill: Stealth"
+          }
+        },
+        {
+          "value": 18,
+          "proficiency": {
+            "index": "skill-survival",
+            "name": "Skill: Survival"
+          }
+        }
+      ],
+      "damage_vulnerabilities": [
+        "Poison"
+      ],
+      "damage_resistances": [
+        "Lightning"
+      ],
+      "damage_immunities": [
+        "Fire",
+        "Bludgeoning"
+      ],
+      "condition_immunities": [
+        {
+          "index": "Poisoned"
+        }
+      ],
+      "senses": {
+        "passive_perception": "15",
+        "blindsight": "60",
+        "tremorsense": "45",
+        "darkvision": "120",
+        "truesight": "50"
+      },
+      "languages": "Common, Elvish, Dwarven",
+      "challenge_rating": "5",
+      "xp": "750",
+      "special_abilities": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "actions": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "legendary_actions": [
+        {
+          "name": "claw",
+          "desc": "claw"
+        }
+      ],
+      "id": 1
+    }
+  ]
 }

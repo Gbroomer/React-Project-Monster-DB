@@ -48,7 +48,8 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         if (name && password) {
             const user = {
                 name: name,
-                password: password
+                password: password,
+                encounters: []
             }
             if (loginType) {
                 userSignUp(user)
@@ -92,9 +93,6 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
             return (
                 <div>
                     <h2>Welcome {user.name}!</h2>
-                    {user.encounters.length === 0 && (
-                        <p>To get started, click on the Monsters link on top and follow the guide to begin building and saving your encounter list!</p>
-                    )}
                 </div>
             )
         }

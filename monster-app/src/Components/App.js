@@ -1,6 +1,6 @@
 import '../App.css';
 import React, { useEffect, useState } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import MonsterContainer from "./Monsters/MonsterContainer"
 import Encounters from "./Encounters/Encounters"
 import SpecificMonster from "./Monsters/SpecificMonster"
@@ -10,14 +10,15 @@ import NavBar from "./NavBar"
 
 function App() {
 
+  const navigate = useNavigate()
   const [monsters, setMonsters] = useState([])
   const [userLogged, setUserLogged] = useState(false)
   const [users, setUsers] = useState([])
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
   const [selectedMonster, setSelectedMonster] = useState([])
 
   useEffect(() => {
-    if(monsters.length === 0) {
+    if (monsters.length === 0) {
       fetch("https://www.dnd5eapi.co/api/monsters")
         .then(res => res.json())
         .then(data => {
@@ -25,14 +26,20 @@ function App() {
             return fetch(`https://www.dnd5eapi.co${monster.url}`)
               .then(res => res.json());
           });
-  
+
           return Promise.all(fetchPromises);
         })
         .then(fetchedMonsters => {
-          const uniqueMonsters = fetchedMonsters.filter(monster => {
-            return !monsters.some(prevMonster => prevMonster.url === monster.url);
-          });
-          setMonsters(prevMonsters => [...prevMonsters, ...uniqueMonsters]);
+
+          const uniqueMonsterNames = new Set()
+          monsters.forEach(monster => {
+            uniqueMonsterNames.add(monster.name)
+          })
+
+          const uniqueFetchedMonsters = fetchedMonsters.filter(monster => {
+            return !uniqueMonsterNames.has(monster.name)
+          })
+          setMonsters(prevMonsters => [...prevMonsters, ...uniqueFetchedMonsters])
         })
         .catch(error => {
           console.error("Error fetching monsters:", error);
@@ -41,26 +48,28 @@ function App() {
   }, [monsters]);
 
   useEffect(() => {
+    fetch("http://localhost:3001/Monsters")
+      .then(res => res.json())
+      .then(fetchedMonsters => {
+        const uniqueMonsterNames = new Set();
+        const uniqueMonsters = fetchedMonsters.filter(monster => {
+          if(!uniqueMonsterNames.has(monster.name)) {
+            uniqueMonsterNames.add(monster.name)
+            return true
+          }
+          return false
+        })
+        setMonsters(prevMonsters => [...prevMonsters, ...uniqueMonsters])
+      })
+  }, [])
+
+
+  useEffect(() => {
     fetch("http://localhost:3001/Users")
       .then(res => res.json())
       .then(data => setUsers(data))
   }, [])
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/Users/1", {
-  //     method: 'PATCH',
-  //     headers: { "Content-Type": "application/json"},
-  //     body: JSON.stringify({
-  //       encounters: [
-  //         ...users[0].encounters,
-  //         {
-  //           test: 'test'
-  //         }
-  //       ]
-  //     })
-  //   },
-  //   )
-  // }, [])
 
   function selectMonster(monster) {
     setSelectedMonster(monster)
@@ -104,7 +113,22 @@ function App() {
       ...monsters,
       monster
     ])
+
+    fetch("http://localhost:3001/Monsters", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(monster)
+    }).then(() => {
+      setSelectedMonster(monster)
+      navigate(`./Monsters/${monster.index}`)
+    }).catch((error) => {
+      console.log("Error:", error)
+    })
+
+
   }
+
+
   console.log(monsters)
   return (
 
@@ -114,7 +138,7 @@ function App() {
         <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} />} />
         <Route path="/" element={userLogged ? <Encounters user={user} /> : null} />
         <Route path="/Monsters" element={<MonsterContainer monsters={monsters} selectMonster={selectMonster} />} />
-        <Route path="Create-Monster" element={<CreateForm pushNewMonster = {pushNewMonster} /> } />
+        <Route path="Create-Monster" element={<CreateForm pushNewMonster={pushNewMonster} />} />
       </Routes>
     </div>
   );
