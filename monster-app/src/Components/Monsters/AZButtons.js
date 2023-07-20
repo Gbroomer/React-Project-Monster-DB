@@ -34,9 +34,9 @@ function AZButtons({ letter, filterLetteredMonsters, unfilterLetteredMonsters })
     return (
         <Button
             onClick={handleClick}
-            variant={buttonIsClicked ? "danger" : "secondary"}
-            className="m-1 p-0 rounded-circle"
-            style={{ width: "25px", height: "25px", lineHeight: "1", fontSize: "12px" }}
+            variant={buttonIsClicked ? "danger" : "success"}
+            className="m-1 p-0 rounded-circle btn-lg"
+            style={{ width: "40px", height: "40px", lineHeight: "1", fontSize: "18px" }}
         >
             {letter}
         </Button>

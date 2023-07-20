@@ -79,7 +79,7 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         if (!userLogged) {
             return (
                 <div>
-                    <form id="Login" className="User-Login" onSubmit={(e) => handleLogin(e)}>
+                    <form id="Login" className="User-Login bg-dark" onSubmit={(e) => handleLogin(e)}>
                         <div>
                             <h4>{loginType ? "Sign-Up:" : "Login:"}</h4>
                         </div>
@@ -128,12 +128,12 @@ function NavBar({ userLogin, userSignUp, userLogged, user }) {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid d-flex justify-content-between">
                 <div>
-                {alertVisible && ( 
-            <div className="alert alert-danger" role="alert">
-              Please Input All Fields
-            </div>
-          )}
-                    <CheckLogged /> 
+                    {alertVisible && (
+                        <div className="alert alert-danger" role="alert">
+                            Please Input All Fields
+                        </div>
+                    )}
+                    <CheckLogged />
                 </div>
 
                 <div>
