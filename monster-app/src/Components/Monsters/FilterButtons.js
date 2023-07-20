@@ -6,10 +6,11 @@ function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
 
     const [typeIsClicked, setTypeIsClicked] = useState(false)
     const [crIsClicked, setCrIsClicked] = useState(false)
+    const crArray = ["0--0.2","0.21--0.5","0.51--2","2.1--5","5.1--10","10.1--30"]
     
     const typeButtonsContainer = {
         display: "flex",
-        gap: "2px",
+        gap: "1px",
         justifyContent: 'center',
       }
 
@@ -48,10 +49,12 @@ function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
         setCrIsClicked(!crIsClicked)
     }
 
-    const uniqueTypeButtons = uniqueTypes.map((type)=>
-    <TypeButtons key={type} type={type} 
+    const uniqueTypeButtons = uniqueTypes.map((type, index)=>
+    <TypeButtons key={index} type={type} 
     monsters={monsters} addSelectedType={addSelectedType}/>)
 
+    // const crButtons = crArray.map((cr, index) => 
+    // <CrButtons style={typeButtonsContainer} key={index} cr={cr} monstersCr={monstersCr}/> )
 
     return  (
         <>
@@ -60,7 +63,7 @@ function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
             <button onClick={handleCrClick} 
             style={crIsClicked ? clickedCrButton:crButton}>CR</button>
             {typeIsClicked ? <div style={typeButtonsContainer}>{uniqueTypeButtons}</div> :null}
-            {crIsClicked ? <CrButtons /> : null}
+            {crIsClicked ? <CrButtons monstersCr={monstersCr} /> :null}
         </>
     )
 }
