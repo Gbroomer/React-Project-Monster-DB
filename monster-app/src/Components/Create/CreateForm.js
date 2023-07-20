@@ -324,41 +324,41 @@ function CreateForm({ pushNewMonster }) {
             <form className="hp_form">
                 <div className="mb-3">
                     <h5>Hit Points:</h5>
-                    
-
-                        <label className="form-label">Hit Point Total:
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="hit_points"
-                                name="HP"
-                                placeholder="10"
-                                onChange={(e) => {
-                                    const index = "hit_points";
-                                    const value = e.target.value;
-                                    handleChange(index, value);
-                                }}
-                            />
-                        </label>
 
 
-                        <label className="form-label">Hit Points Dice Roll:
-                            <input
+                    <label className="form-label">Hit Point Total:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="hit_points"
+                            name="HP"
+                            placeholder="10"
+                            onChange={(e) => {
+                                const index = "hit_points";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        />
+                    </label>
 
-                                type="text"
-                                className="form-control"
-                                id="hit_points_roll"
-                                name="HP Dice"
-                                placeholder="ex: 1d10+4"
-                                onChange={(e) => {
-                                    const index = "hit_points_roll";
-                                    const value = e.target.value;
-                                    handleChange(index, value);
-                                }}
-                            />
-                        </label>
 
-                    
+                    <label className="form-label">Hit Points Dice Roll:
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            id="hit_points_roll"
+                            name="HP Dice"
+                            placeholder="ex: 1d10+4"
+                            onChange={(e) => {
+                                const index = "hit_points_roll";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        />
+                    </label>
+
+
                 </div>
             </form>
             <form className="speed_form">
@@ -524,20 +524,72 @@ function CreateForm({ pushNewMonster }) {
                     </div>
                 </div>
 
-                
+
                 <div className="mb-3">
                     <h3>Conditions:</h3>
-                    <CreateDamageConditions handleChange={handleChange} createdMonster={createdMonster} />
+                    <label className="form-label">Damage Vulnerabilities:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_vulnerabilities"
+                        name="damage_vulnerabilities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_vulnerabilities", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Damage Resistances:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_resistances"
+                        name="damage_resistances"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_resistances", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Damage immunitites:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_immunities"
+                        name="damage_immunities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_immunities", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Condition Immunities:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="condition_immunities"
+                        name="condition_immunities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("condition_immunities", e.target.value);
+                        }}
+                    />
                 </div>
 
-                
+
                 <div className="mb-3">
                     <h3>Senses:</h3>
                     <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
                 </div>
 
-                
-                
+
+
                 <div className="mb-3">
                     <h3>Languages:</h3>
                     <form>
@@ -554,7 +606,7 @@ function CreateForm({ pushNewMonster }) {
                     </form>
                 </div>
 
-                
+
                 <div className="mb-3">
                     <h3>Challenge Rating:</h3>
                     <form>
@@ -571,7 +623,7 @@ function CreateForm({ pushNewMonster }) {
                     </form>
                 </div>
 
-                
+
                 <div className="mb-3">
                     <h3>Experience:</h3>
                     <form>
@@ -588,13 +640,13 @@ function CreateForm({ pushNewMonster }) {
                     </form>
                 </div>
 
-                
+
                 <div className="mb-3">
                     <h3>Special Abilities:</h3>
                     <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster} />
                 </div>
 
-               
+
                 <div className="mb-3">
                     <button className="btn btn-primary" onClick={() => pushNewMonster(createdMonster)}>
                         Submit
