@@ -3,7 +3,8 @@ import React, { useState } from "react"
 function TypeButtons({ type, addSelectedType, monsters }){
 
     const [typeButtonClicked, setTypeButtonClicked] = useState(false)
-
+    const [currentFilteredTypes, setCurrentFilteredTypes] = useState([])
+    
     const specificTypeButton = {
         background: "grey",
         cursor: "pointer",
@@ -17,15 +18,37 @@ function TypeButtons({ type, addSelectedType, monsters }){
         margin:" 0px 1px",
     }
 
-    function handleClick (e) {
+    function handleClick (type) {
+        if (currentFilteredTypes.includes(type)) {
+            setCurrentFilteredTypes((prevSelectedTypes) =>
+              prevSelectedTypes.filter((selectedType) => selectedType !== type)
+            );
+          } else {
+            setCurrentFilteredTypes((prevSelectedTypes) => [...prevSelectedTypes, type]);
+          }
         setTypeButtonClicked(!typeButtonClicked)
-        addSelectedType(filteredTypes)
-    }
+        addSelectedType(currentFilteredTypes)
+        console.log(currentFilteredTypes)
+    
+        };
 
-    const filteredTypes = monsters.filter((monster) =>
-    monster.type === type)
+    // const filteredMonsterTypes = (type) => {
+    //     const filteredTypes = monsters.filter((monster) => {
+    //         return monster.type === type
+    //     })
+    //     setCurrentFilteredTypes(currentFilteredTypes.concat(filteredTypes))
+    //   }
+    
+    
+    // const unfilteredMonsterTypes = (type)=> {
+    //     const unfilteredTypes = monsters.filter((monster) => {
+    //         return monster.type !== type
+    //     })
+    //     setCurrentFilteredTypes(unfilteredTypes)
+    //   }
 
-    addSelectedType(filteredTypes)
+
+   
 
     return(
         <div>
