@@ -6,6 +6,7 @@ import Encounters from "./Encounters/Encounters"
 import SpecificMonster from "./Monsters/SpecificMonster"
 import CreateForm from "./Create/CreateForm"
 import NavBar from "./NavBar"
+import Home from './Home';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
             return fetch(`https://www.dnd5eapi.co${monster.url}`)
               .then(res => res.json());
           });
-
+          
           return Promise.all(fetchPromises);
         })
         .then(fetchedMonsters => {
@@ -109,23 +110,37 @@ function App() {
     }
   }
   function pushNewMonster(monster) {
-    setMonsters([
-      ...monsters,
-      monster
-    ])
-
-    fetch("http://localhost:3001/Monsters", {
-      method: 'POST',
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(monster)
-    }).then(() => {
-      setSelectedMonster(monster)
-      navigate(`./Monsters/${monster.index}`)
-    }).catch((error) => {
-      console.log("Error:", error)
+    const uniqueMonster = monsters.filter(mon => {
+      if(mon.name.toLowerCase() === monster.name.toLowerCase()) {
+        return true
+      } return false
     })
+    console.log("uniqueMonster:", uniqueMonster)
+
+    if(uniqueMonster.length === 0) {
+      setMonsters([
+        ...monsters,
+        monster
+      ])
+  
+      fetch("http://localhost:3001/Monsters", {
+        method: 'POST',
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(monster)
+      }).then(() => {
+        setSelectedMonster(monster)
+        navigate(`./Monsters/${monster.index}`)
+      }).catch((error) => {
+        console.log("Error:", error)
+      })
+    } else {
+      alert('A monster with that name already exists!')
+    }
 
 
+  }
+  function updateUser(updatedUser) {
+    setUser(updatedUser)
   }
 
 
@@ -135,8 +150,8 @@ function App() {
     <div className="App">
       <NavBar userLogin={userLogin} userSignUp={userSignUp} userLogged={userLogged} user={user} />
       <Routes>
-        <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} />} />
-        <Route path="/" element={userLogged ? <Encounters user={user} /> : null} />
+        <Route path="Monsters/:index" element={<SpecificMonster monster={selectedMonster} userLogged = {userLogged} />} />
+        <Route path="/" element={userLogged ? <Encounters user={user} updateUser={updateUser}/> : <Home />} />
         <Route path="/Monsters" element={<MonsterContainer monsters={monsters} selectMonster={selectMonster} />} />
         <Route path="Create-Monster" element={<CreateForm pushNewMonster={pushNewMonster} />} />
       </Routes>

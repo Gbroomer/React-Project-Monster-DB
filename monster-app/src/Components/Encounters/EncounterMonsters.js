@@ -39,7 +39,7 @@ function EncounterMonsters({ monster }) {
     const savingThrows = []
     const skills = []
 
-    proficiencies.forEach((proficiency) => {
+    proficiencies.map((proficiency) => {
         const { index, name } = proficiency.proficiency
         const value = proficiency.value
 
@@ -159,7 +159,7 @@ function EncounterMonsters({ monster }) {
                             </div>
                         ))
                     )}
-
+                    <button className = "remove_monster">Remove from Encounter</button> 
                 </>
             )}
         </div>

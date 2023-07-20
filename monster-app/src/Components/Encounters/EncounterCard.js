@@ -6,7 +6,11 @@ function EncounterCard({encounter}) {
     const showMonster = encounter.monsters.map((monster) => <EncounterMonsters monster = {monster} key = {monster.index}/>)
 
     function renderInfo() {
-        setGenerateInfo(!generateInfo)
+        if(encounter.monsters.length > 0) {
+            setGenerateInfo(!generateInfo)
+        } else {
+            
+        }
     }
 
     return (
