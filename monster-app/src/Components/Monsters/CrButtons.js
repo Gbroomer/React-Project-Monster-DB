@@ -59,14 +59,9 @@ function CrButtons({ cr, monsters, selectMonster }){
         setCrNumButtonClicked(!crNumButtonClicked)
      }
 
-    // const displayCrMonsters = displayCr.map((monster, index) =>
-    // <MonsterList key={index} monster={monster} selectMonster={selectMonster}/>)
-    const displayCrMonsters = displayCr.map((monster, index) => (
-        <>
-          <MonsterList key={index} monster={monster} selectMonster={selectMonster} /> 
-          CR: {monster.challenge_rating}
-        </>
-      ));
+    const displayCrMonsters = displayCr.map((monster, index) =>
+    <MonsterList key={index} monster={monster} selectMonster={selectMonster}/>)
+
     return(
         <div>
             <button value={cr}

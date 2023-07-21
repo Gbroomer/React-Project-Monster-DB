@@ -59,13 +59,6 @@ function MonsterContainer({ monsters, selectMonster  }) {
 
     const uniqueTypes = Array.from(new Set(monsterTypes));
 
-    // const monstersCr = monsters.map((monster) => ({ 
-    //     name: monster.name, 
-    //     challenge_rating: monster.challenge_rating ,
-    //     index: monster.index
-    // }))
-
-
     return (
         <div className="allMonsters">
             <h1>Monster List:</h1>

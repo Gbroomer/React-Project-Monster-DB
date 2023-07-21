@@ -56,7 +56,7 @@ function FilterButtons({ uniqueTypes, monsters, addSelectedType, selectMonster})
     const crButtons = crArray.map((cr, index) => 
     <CrButtons key={index} cr={cr} monsters={monsters}
     selectMonster={selectMonster}/> )
-    // {crIsClicked ? <CrButtons monsters={monsters} selectMonster={selectMonster} /> :null}
+   
     return  (
         <>
             <button onClick={handleTypeClick} 

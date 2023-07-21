@@ -46,10 +46,7 @@ function TypeButtons({ type, addSelectedType, monsters }){
     //     })
     //     setCurrentFilteredTypes(unfilteredTypes)
     //   }
-
-
-   
-
+    
     return(
         <div>
             <button value={type} 
