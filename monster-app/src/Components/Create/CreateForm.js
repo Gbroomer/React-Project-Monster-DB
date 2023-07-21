@@ -612,7 +612,7 @@ function CreateForm({ pushNewMonster }) {
                     <form>
                         <input
                             type="number"
-                            className="form-control"
+                            // className="form-control"
                             id="challenge_rating"
                             name="challenge_rating"
                             placeholder=".5, 5, 15"
@@ -629,7 +629,7 @@ function CreateForm({ pushNewMonster }) {
                     <form>
                         <input
                             type="number"
-                            className="form-control"
+                            // className="form-control"
                             id="xp"
                             name="xp"
                             placeholder="50, 250, 7500"

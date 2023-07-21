@@ -1,5 +1,6 @@
 import { useState } from "react"
 import EncounterList from "./EncounterList"
+import EncounterMonsters from "./EncounterMonsters"
 
 
 function Encounters({ user, updateUser, encounters }) {
@@ -36,7 +37,9 @@ function Encounters({ user, updateUser, encounters }) {
                 <button className="new_encounter" onClick={(e) => newEncounter(e)}>Create Encounter</button>
 
             </form>
-            <EncounterList encounters={encounters} user={user} updateUser={updateUser} />
+            {encounters?.length > 0 && (
+                <EncounterList encounters={encounters} user={user} updateUser={updateUser} />
+            )}
         </div>
     )
 }

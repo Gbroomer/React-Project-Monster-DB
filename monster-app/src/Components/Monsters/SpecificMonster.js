@@ -90,6 +90,7 @@ function SpecificMonster({ monster, encounters, user, updateUser }) {
                 {speed.climb && ` Climb: ${speed.climb}`}
                 {speed.fly && ` Fly: ${speed.fly}`}
                 {speed.swim && ` Swim: ${speed.swim}`}
+                {speed.burrow && ` Burrow: ${speed.burrow}`}
             </h5>
 
             <div className="Ability Scores">

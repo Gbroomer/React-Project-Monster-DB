@@ -22,7 +22,7 @@ function CreateSpecialInputs({ type, handleChange, createdMonster, index, remove
     return (
         <div>
             <input type="text" name="name" placeholder="Claw" onChange={updateActionName} />
-            <input className="action_description" type="text" name="desc" placeholder=" Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: (1d8 + 4) piercing damage." onChange={updateActionDesc} />
+            <input className="form-control" type="text" name="desc" placeholder=" Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: (1d8 + 4) piercing damage." onChange={updateActionDesc} />
             {index > 0 ? <button onClick={(e) => removeSpecial(e, index, type)}>delete</button> : null}
         </div>
     )

@@ -103,8 +103,8 @@ function App() {
         .then(res => res.json())
         .then(newUser => {
           setUser(newUser)
-          setUserLogged(true)
           setEncounters(newUser.encouters)
+          setUserLogged(true)
           console.log(newUser)
         })
         .catch(error => {
