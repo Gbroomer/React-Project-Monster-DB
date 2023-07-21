@@ -242,13 +242,13 @@ function CreateForm({ pushNewMonster }) {
                             <option value="dragon">Dragon</option>
                             <option value="elemental">Elemental</option>
                             <option value="fey">Fey</option>
-                            <option value="Fiend">Fiend</option>
-                            <option value="Giant">Giant</option>
-                            <option value="Humanoid">Humanoid</option>
-                            <option value="Monstrosity">Monstrosity</option>
-                            <option value="Ooze">Ooze</option>
-                            <option value="Plant">Plant</option>
-                            <option value="Undead">Undead</option>
+                            <option value="fiend">Fiend</option>
+                            <option value="giant">Giant</option>
+                            <option value="humanoid">Humanoid</option>
+                            <option value="monstrosity">Monstrosity</option>
+                            <option value="ooze">Ooze</option>
+                            <option value="plant">Plant</option>
+                            <option value="undead">Undead</option>
                         </select>
                     </label>
                 </div>

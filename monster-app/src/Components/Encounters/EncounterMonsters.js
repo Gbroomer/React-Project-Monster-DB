@@ -56,22 +56,22 @@ function EncounterMonsters({ monster, user, updateUser, encounter }) {
         const updatedEncounters = [...user.encounters]
         let encounterMonsters = updatedEncounters[encounterIndex].monsters
         const updatedMonsters = encounterMonsters.filter((monst) => monst !== monster)
-        
+
         updatedEncounters[encounterIndex].monsters = updatedMonsters
 
         let updatedUser = {
-            ...user, 
+            ...user,
             encounters: updatedEncounters
         }
         console.log(updatedUser)
         fetch(`http://localhost:3001/Users/${user.id}`, {
-                method: "PATCH",
-                headers: { 'Content-Type': 'application/JSON', Accept: 'application/JSON' },
-                body: JSON.stringify(updatedUser)
-            }).then(res => res.json())
-                .then(updatedUser => {
-                    updateUser(updatedUser)
-                })
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/JSON', Accept: 'application/JSON' },
+            body: JSON.stringify(updatedUser)
+        }).then(res => res.json())
+            .then(updatedUser => {
+                updateUser(updatedUser)
+            })
     }
     return (
         <div className="monsterCard">
@@ -182,8 +182,9 @@ function EncounterMonsters({ monster, user, updateUser, encounter }) {
                     )}
                     <button className="remove_monster" onClick={removeMonster}>Remove from Encounter</button>
                 </>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
 
