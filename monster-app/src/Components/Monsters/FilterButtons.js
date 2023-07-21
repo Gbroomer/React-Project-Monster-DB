@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import TypeButtons from "./TypeButtons"
 import CrButtons from "./CrButtons"
 
-function FilterButtons({ uniqueTypes, monsters, addSelectedType, removeSelectedType, selectMonster }) {
+function FilterButtons({ uniqueTypes, monsters, addSelectedType, removeSelectedType, selectMonster, crSwitch }) {
 
     const [typeIsClicked, setTypeIsClicked] = useState(false)
     const [crIsClicked, setCrIsClicked] = useState(false)
@@ -69,7 +69,7 @@ function FilterButtons({ uniqueTypes, monsters, addSelectedType, removeSelectedT
 
     const crButtons = crArray.map((cr, index) => 
     <CrButtons key={index} cr={cr} monsters={monsters}
-    selectMonster={selectMonster}/> )
+    selectMonster={selectMonster} crSwitch={crSwitch}/> )
     // {crIsClicked ? <CrButtons monsters={monsters} selectMonster={selectMonster} /> :null}
     return  (
         <>

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import MonsterList from "./MonsterList"
 
-function CrButtons({ cr, monsters, selectMonster }){
+function CrButtons({ cr, monsters, selectMonster, crSwitch }){
 
     const [crNumButtonClicked, setCrNumButtonClicked] = useState(false)
     const [displayCr, setDisplayCr] = useState([])
@@ -56,15 +56,13 @@ function CrButtons({ cr, monsters, selectMonster }){
         }else if (groupRating === "5.1--10") {setDisplayCr(crGroup5)
         }else if (groupRating === "10.1--30") {setDisplayCr(crGroup6)
         }
+        crSwitch(!crNumButtonClicked)
         setCrNumButtonClicked(!crNumButtonClicked)
      }
 
-    // const displayCrMonsters = displayCr.map((monster, index) =>
-    // <MonsterList key={index} monster={monster} selectMonster={selectMonster}/>)
     const displayCrMonsters = displayCr.map((monster, index) => (
         <>
           <MonsterList key={index} monster={monster} selectMonster={selectMonster} /> 
-          {/* CR: {monster.challenge_rating} */}
         </>
       ));
     return(
