@@ -18,9 +18,10 @@ function MonsterContainer({ monsters, selectMonster  }) {
                     return monster.name.toLowerCase() === filter.name.toLowerCase()
                 }))
             })
-            console.log(filteredTypeMonsters)
+            setFilteredMonstersNames(filteredTypeMonsters)
+        } else {
+            setFilteredMonstersNames(filteredTypes)
         }
-    
     }
     
     const filterLetteredMonsters = (letter) => {
@@ -36,8 +37,6 @@ function MonsterContainer({ monsters, selectMonster  }) {
             })
         setFilteredMonstersNames(unfilterMonsters)
     }
-
-
  
     useEffect(() => {
         if (filteredMonstersNames.length === 0) {
@@ -60,11 +59,11 @@ function MonsterContainer({ monsters, selectMonster  }) {
 
     const uniqueTypes = Array.from(new Set(monsterTypes));
 
-    const monstersCr = monsters.map((monster) => ({ 
-        name: monster.name, 
-        challenge_rating: monster.challenge_rating 
-    }))
-
+    // const monstersCr = monsters.map((monster) => ({ 
+    //     name: monster.name, 
+    //     challenge_rating: monster.challenge_rating ,
+    //     index: monster.index
+    // }))
 
 
     return (
@@ -73,10 +72,7 @@ function MonsterContainer({ monsters, selectMonster  }) {
             {allAlphabetButtons}
             <br />
             <FilterButtons addSelectedType={addSelectedType} monsters={monsters}
-             uniqueTypes={uniqueTypes} monstersCr={monstersCr}
-            //  filteredMonsterTypes={filteredMonsterTypes}
-            //  unfilteredMonsterTypes={unfilteredMonsterTypes}
-             />
+             uniqueTypes={uniqueTypes} selectMonster={selectMonster} />
             <br />
             <br />
             {eachMonster}

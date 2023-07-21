@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom"
 
 
 function MonsterCard({ monster, selectMonster }) {
-
     return (
         <div>
             <NavLink onClick = {(e) => {

@@ -26,7 +26,6 @@ function AZButtons({ letter, filterLetteredMonsters, unfilterLetteredMonsters })
         } else {
             unfilterLetteredMonsters(letter.toLowerCase())
         }
-
         setbuttonIsClicked(!buttonIsClicked)
     }
     

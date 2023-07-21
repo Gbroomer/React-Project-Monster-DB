@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import TypeButtons from "./TypeButtons"
 import CrButtons from "./CrButtons"
 
-function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
+function FilterButtons({ uniqueTypes, monsters, addSelectedType, selectMonster}) {
 
     const [typeIsClicked, setTypeIsClicked] = useState(false)
     const [crIsClicked, setCrIsClicked] = useState(false)
@@ -53,9 +53,10 @@ function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
     <TypeButtons key={index} type={type} 
     monsters={monsters} addSelectedType={addSelectedType}/>)
 
-    // const crButtons = crArray.map((cr, index) => 
-    // <CrButtons style={typeButtonsContainer} key={index} cr={cr} monstersCr={monstersCr}/> )
-
+    const crButtons = crArray.map((cr, index) => 
+    <CrButtons key={index} cr={cr} monsters={monsters}
+    selectMonster={selectMonster}/> )
+    // {crIsClicked ? <CrButtons monsters={monsters} selectMonster={selectMonster} /> :null}
     return  (
         <>
             <button onClick={handleTypeClick} 
@@ -63,7 +64,7 @@ function FilterButtons({ uniqueTypes, monstersCr, monsters, addSelectedType }) {
             <button onClick={handleCrClick} 
             style={crIsClicked ? clickedCrButton:crButton}>CR</button>
             {typeIsClicked ? <div style={typeButtonsContainer}>{uniqueTypeButtons}</div> :null}
-            {crIsClicked ? <CrButtons monstersCr={monstersCr} /> :null}
+            {crIsClicked ? <div style={typeButtonsContainer}>{crButtons}</div> :null}
         </>
     )
 }
