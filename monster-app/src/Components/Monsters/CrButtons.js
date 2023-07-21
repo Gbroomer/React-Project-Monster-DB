@@ -1,10 +1,11 @@
 import React, { useState } from "react"
+import MonsterList from "./MonsterList"
 
-function CrButtons({ monstersCr  }){
+function CrButtons({ cr, monsters, selectMonster }){
 
     const [crNumButtonClicked, setCrNumButtonClicked] = useState(false)
     const [displayCr, setDisplayCr] = useState([])
-
+    
     const crNumButton = {
         background: "grey",
         cursor: "pointer",
@@ -17,76 +18,63 @@ function CrButtons({ monstersCr  }){
         borderRadius: "5px",
         margin:" 0px 1px",
     }
-    const crGroup1 = monstersCr.filter((monster) => {
+
+    const crGroup1 = monsters.filter((monster) => {
         if (monster.challenge_rating >= 0 && monster.challenge_rating <=.2) {
-            return monster
-        //  } else if (monster.challenge_rating >.2 && monster.challenge_rating <=.5) {
-        //      return monster
-        // } else if (monster.challenge_rating >.5 && monster.challenge_rating <=2) {
-        //     return monster
-        // } else if (monster.challenge_rating >2 && monster.challenge_rating <=5) {
-        //     return monster
-        // } else if (monster.challenge_rating >5 && monster.challenge_rating <=10) {
-        //     return monster
-        // } else if (monster.challenge_rating >10 && monster.challenge_rating <=30) {
-        //     return monster
-        }
+        return monster}
     })
-    // const notCrGroup1 = monstersCr.filter((monster) => {
-    //     if (monster.challenge_rating >.2) {
-    //         return monster
-    //     }
-    // })
-    const crGroup1Name = crGroup1.map((item) => item.name )
-    const displayCrName = displayCr.map((item) => item.name )
-    function handleClick1(){
-        setDisplayCr((prevDisplayCr) => [...prevDisplayCr, ...crGroup1Name]);
-        if (displayCrName.includes(crGroup1Name)) {
-            setDisplayCr((prevDisplayCr) =>
-            prevDisplayCr.filter((displayCrName) => displayCrName !== crGroup1Name)
-            );
-        } else {
-            setDisplayCr((prevDisplayCr) => prevDisplayCr.concat(crGroup1Name));
+
+    const crGroup2 = monsters.filter((monster) => {
+        if (monster.challenge_rating >.2 && monster.challenge_rating <=.5) {
+        return monster}
+    })
+
+    const crGroup3 = monsters.filter((monster) => {
+        if (monster.challenge_rating >.5 && monster.challenge_rating <=2) {
+        return monster}
+    })
+    const crGroup4 = monsters.filter((monster) => {
+        if (monster.challenge_rating >2 && monster.challenge_rating <=5) {
+        return monster}
+    })
+    const crGroup5 = monsters.filter((monster) => {
+        if (monster.challenge_rating >5 && monster.challenge_rating <=10) {
+        return monster}
+    })
+    const crGroup6 = monsters.filter((monster) => {
+        if (monster.challenge_rating >10 && monster.challenge_rating <=30) {
+        return monster}
+    })
+    
+    function handleClick1(e){
+        const groupRating = (e.target.value);
+        
+        if(groupRating === "0--0.2"){setDisplayCr(crGroup1)
+        }else if (groupRating === "0.21--0.5"){setDisplayCr(crGroup2)
+        }else if (groupRating === "0.51--2"){setDisplayCr(crGroup3)
+        }else if (groupRating === "2.1--5") {setDisplayCr(crGroup4)
+        }else if (groupRating === "5.1--10") {setDisplayCr(crGroup5)
+        }else if (groupRating === "10.1--30") {setDisplayCr(crGroup6)
         }
-
-        // if (crNumButtonClicked) {
-        //     setDisplayCr(crGroup1);
-        // } else {
-        //     setDisplayCr(notCrGroup1);
-        // }
-        console.log(displayCr)
-
-
         setCrNumButtonClicked(!crNumButtonClicked)
      }
-   
+
+    // const displayCrMonsters = displayCr.map((monster, index) =>
+    // <MonsterList key={index} monster={monster} selectMonster={selectMonster}/>)
+    const displayCrMonsters = displayCr.map((monster, index) => (
+        <>
+          <MonsterList key={index} monster={monster} selectMonster={selectMonster} /> 
+          {/* CR: {monster.challenge_rating} */}
+        </>
+      ));
     return(
         <div>
-            <button value="group1" 
+            <button value={cr}
             style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            onClick={handleClick1}>
-            0--0.2</button>
-            <button value="group2" 
-            style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            >
-            0.21--0.5</button>
-            <button value="group3" 
-            style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            >
-            0.51--2</button>
-            <button value="group4"
-            style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            >
-            2.1--5</button>
-            <button value="group5" 
-            style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            >
-            5.1--10</button>
-            <button value="group6"
-            style={crNumButtonClicked ? clickedCrNumButton:crNumButton}
-            >
-            10.1--30</button>
+            onClick={(e) => handleClick1(e)}>{cr}</button>
+            {crNumButtonClicked ? displayCrMonsters : null}
         </div>
+
     )
 }
 export default CrButtons;
