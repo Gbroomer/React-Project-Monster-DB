@@ -283,7 +283,7 @@ function CreateForm({ pushNewMonster }) {
                 <div className="mb-3">
                     <label className="form-label">Armor Class - Number:
                         <input
-                           
+
                             type="number"
                             className="form-control"
                             id="armor-class"
@@ -303,7 +303,7 @@ function CreateForm({ pushNewMonster }) {
                 <div className="mb-3">
                     <label className="form-label">Armor Class - Type:
                         <input
-                           
+
                             type="text"
                             className="form-control"
                             id="armor-class-type"
@@ -324,100 +324,337 @@ function CreateForm({ pushNewMonster }) {
             <form className="hp_form">
                 <div className="mb-3">
                     <h5>Hit Points:</h5>
-                    <ul>
-                        <li>
-                            <label className="form-label">Hit Point Total:
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="hit_points"
-                                    name="HP"
-                                    placeholder="10"
-                                    onChange={(e) => {
-                                        const index = "hit_points";
-                                        const value = e.target.value;
-                                        handleChange(index, value);
-                                    }}
-                                />
-                            </label>
-                        </li>
-                        <li>
-                            <label className="form-label">Hit Points Dice Roll:
-                                <input
-                                   
-                                    type="text"
-                                    className="form-control"
-                                    id="hit_points_roll"
-                                    name="HP Dice"
-                                    placeholder="ex: 1d10+4"
-                                    onChange={(e) => {
-                                        const index = "hit_points_roll";
-                                        const value = e.target.value;
-                                        handleChange(index, value);
-                                    }}
-                                />
-                            </label>
-                        </li>
-                    </ul>
+
+
+                    <label className="form-label">Hit Point Total:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="hit_points"
+                            name="HP"
+                            placeholder="10"
+                            onChange={(e) => {
+                                const index = "hit_points";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        />
+                    </label>
+
+
+                    <label className="form-label">Hit Points Dice Roll:
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            id="hit_points_roll"
+                            name="HP Dice"
+                            placeholder="ex: 1d10+4"
+                            onChange={(e) => {
+                                const index = "hit_points_roll";
+                                const value = e.target.value;
+                                handleChange(index, value);
+                            }}
+                        />
+                    </label>
+
+
                 </div>
             </form>
             <form className="speed_form">
-                <div speed="speed">
-                    <CreateSpeed handleChange={handleChange} createdMonster={createdMonster} />
+                <div className="mb-3">
+                    <h3>Speed:</h3>
+                    <label className="form-label">Walk Speed:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="walk-speed"
+                            name="walk_speed"
+                            placeholder="30"
+                            onChange={(e) => {
+                                handleChange("speed", { ...createdMonster.speed, walk: e.target.value });
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Swim Speed:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="swim-speed"
+                            name="swim_speed"
+                            placeholder="0"
+                            onChange={(e) => {
+                                handleChange("speed", { ...createdMonster.speed, swim: e.target.value });
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Fly Speed:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="fly-speed"
+                            name="fly_speed"
+                            placeholder="0"
+                            onChange={(e) => {
+                                handleChange("speed", { ...createdMonster.speed, fly: e.target.value });
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Climb Speed:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="climb-speed"
+                            name="climb_speed"
+                            placeholder="0"
+                            onChange={(e) => {
+                                handleChange("speed", { ...createdMonster.speed, climb: e.target.value });
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Burrow Speed:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="burrow-speed"
+                            name="burrow_speed"
+                            placeholder="0"
+                            onChange={(e) => {
+                                handleChange("speed", { ...createdMonster.speed, burrow: e.target.value });
+                            }}
+                        />
+                    </label>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Stats:</h3>
+                    <label className="form-label">Strength:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="strength"
+                            name="strength"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("strength", e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Dexterity:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="dexterity"
+                            name="dexterity"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("dexterity", e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Constitution:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="constitution"
+                            name="constitution"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("constitution", e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Intelligence:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="intelligence"
+                            name="intelligence"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("intelligence", e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Wisdom:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="wisdom"
+                            name="wisdom"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("wisdom", e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label className="form-label">Charisma:
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="charisma"
+                            name="charisma"
+                            placeholder="10"
+                            onChange={(e) => {
+                                handleChange("charisma", e.target.value);
+                            }}
+                        />
+                    </label>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Proficiencies:</h3>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <CreateSavingThrows
+                                handleSavingThrow={handleSavingThrow}
+                                handleProficiencyChangeST={handleProficiencyChangeST}
+                                savingThrow={savingThrow}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <CreateSkills
+                                handleSkillCheck={handleSkillCheck}
+                                handleProficiencyChangeSkill={handleProficiencyChangeSkill}
+                                skill={skill}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Conditions:</h3>
+                    <label className="form-label">Damage Vulnerabilities:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_vulnerabilities"
+                        name="damage_vulnerabilities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_vulnerabilities", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Damage Resistances:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_resistances"
+                        name="damage_resistances"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_resistances", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Damage immunitites:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="damage_immunities"
+                        name="damage_immunities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("damage_immunities", e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label">Condition Immunities:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="condition_immunities"
+                        name="condition_immunities"
+                        placeholder="ex: poisoned"
+                        onChange={(e) => {
+                            handleChange("condition_immunities", e.target.value);
+                        }}
+                    />
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Senses:</h3>
+                    <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
+                </div>
+
+
+
+                <div className="mb-3">
+                    <h3>Languages:</h3>
+                    <form>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="languages"
+                            name="languages"
+                            placeholder="Common, Elvish, telepathy 120ft."
+                            onChange={(e) => {
+                                handleChange("languages", e.target.value);
+                            }}
+                        />
+                    </form>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Challenge Rating:</h3>
+                    <form>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="challenge_rating"
+                            name="challenge_rating"
+                            placeholder=".5, 5, 15"
+                            onChange={(e) => {
+                                handleChange("challenge_rating", e.target.value);
+                            }}
+                        />
+                    </form>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Experience:</h3>
+                    <form>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="xp"
+                            name="xp"
+                            placeholder="50, 250, 7500"
+                            onChange={(e) => {
+                                handleChange("xp", e.target.value);
+                            }}
+                        />
+                    </form>
+                </div>
+
+
+                <div className="mb-3">
+                    <h3>Special Abilities:</h3>
+                    <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster} />
+                </div>
+
+
+                <div className="mb-3">
+                    <button className="btn btn-primary" onClick={() => pushNewMonster(createdMonster)}>
+                        Submit
+                    </button>
                 </div>
             </form>
-            <form className="stats_form">
-                <div className="stats">
-                    <CreateStats handleChange={handleChange} />
-                </div>
-            </form>
-            <form className="proficiencies_form">
-                <div className="proficiencies">
-                    <CreateSavingThrows handleSavingThrow={handleSavingThrow} handleProficiencyChangeST={handleProficiencyChangeST} savingThrow={savingThrow} />
-                    <CreateSkills handleSkillCheck={handleSkillCheck} handleProficiencyChangeSkill={handleProficiencyChangeSkill} skill={skill} />
-                </div>
-            </form>
-            <div className="conditions">
-                <CreateDamageConditions handleChange={handleChange} createdMonster={createdMonster} />
-            </div>
-            <div className="senses">
-                <h5>Senses: </h5>
-                <CreateSenses handleSenses={handleSenses} senses={senses} handleSensesChange={handleSensesChange} />
-            </div>
-            <div className="languages">
-                <h5>Languages: </h5>
-                <form>
-                    <input type="text" id="languages" name="languages" placeholder="Common, Elvish, telepathy 120ft." onChange={(e) => {
-                        handleChange("languages", e.target.value)
-                    }} />
-                </form>
-            </div>
-            <div className="challenge_rating">
-                <h5>Challenge Rating: </h5>
-                <form>
-                    <input type="number" id="challenge_rating" name="challenge_rating" placeholder=".5, 5, 15" onChange={(e) => {
-                        handleChange("challenge_rating", e.target.value)
-                    }} />
-                </form>
-            </div>
-            <div className="xp">
-                <h5>Experience: </h5>
-                <form>
-                    <input type="number" id="xp" name="xp" placeholder="50, 250, 7500" onChange={(e) => {
-                        handleChange("xp", e.target.value)
-                    }} />
-                </form>
-            </div>
-            <div className="abilities">
-                <CreateSpecialAbilities handleChange={handleChange} createdMonster={createdMonster} />
-            </div>
-            <div className="submit_button">
-                <br>
-                </br>
-                <button onClick={() => pushNewMonster(createdMonster)}>Submit</button>
-            </div>
         </div>
-    )
+    );
 }
 
-export default CreateForm
+export default CreateForm;
